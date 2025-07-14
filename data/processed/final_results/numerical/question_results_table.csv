@@ -1,0 +1,11 @@
+question_id,deepseek-r1-distill-llama-70b_COT_with_Panchavakya,deepseek-r1-distill-llama-70b_COT_without_Panchavakya,deepseek-r1-distill-llama-70b_ZeroShot_with_Panchavakya,deepseek-r1-distill-llama-70b_ZeroShot_without_Panchavakya,gemma2-9b-it_COT_with_Panchavakya,gemma2-9b-it_COT_without_Panchavakya,gemma2-9b-it_ZeroShot_with_Panchavakya,gemma2-9b-it_ZeroShot_without_Panchavakya,llama-3.1-8b-instant_COT_with_Panchavakya,llama-3.1-8b-instant_COT_without_Panchavakya,llama-3.1-8b-instant_ZeroShot_with_Panchavakya,llama-3.1-8b-instant_ZeroShot_without_Panchavakya,llama-3.3-70b-versatile_COT_with_Panchavakya,llama-3.3-70b-versatile_COT_without_Panchavakya,llama-3.3-70b-versatile_ZeroShot_with_Panchavakya,llama-3.3-70b-versatile_ZeroShot_without_Panchavakya,mistral-saba-24b_COT_with_Panchavakya,mistral-saba-24b_COT_without_Panchavakya,mistral-saba-24b_ZeroShot_with_Panchavakya,mistral-saba-24b_ZeroShot_without_Panchavakya,qwen3-32b_COT_with_Panchavakya,qwen3-32b_COT_without_Panchavakya,qwen3-32b_ZeroShot_with_Panchavakya,qwen3-32b_ZeroShot_without_Panchavakya
+1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1,1
+2,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1
+3,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1,1
+4,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,0,1,1,0,1,1,1,1
+5,0,0,1,1,1,0,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1
+6,1,1,1,1,1,0,0,0,1,0,0,0,1,1,1,0,1,1,1,0,1,1,1,1
+7,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,1,1
+8,1,1,1,0,1,0,1,0,0,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1
+9,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,1
+10,1,0,1,1,1,0,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,0,1,1

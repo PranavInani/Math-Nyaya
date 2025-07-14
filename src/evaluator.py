@@ -5,7 +5,7 @@ import json
 import re
 import ast
 from tqdm import tqdm
-from src.config import GROQ_API_KEY, COT_SYSTEM_PROMPTS, ZERO_SHOT_SYSTEM_PROMPTS, PANCHAVAKYA_DATA_PATH, FINAL_RESULTS_DIR, model_name_to_filename
+from src.config import GROQ_API_KEY, COT_SYSTEM_PROMPTS, ZERO_SHOT_SYSTEM_PROMPTS, PANCHAVAKYA_DATA_PATH, MCQ_RESULTS_DIR, model_name_to_filename
 import os
 
 client = groq.Groq(api_key=GROQ_API_KEY)
@@ -100,7 +100,7 @@ def run_evaluation(model_name, prompt_style='cot', num_samples=None):
         prompt_style: Style of prompting ('cot' or 'zero_shot')
         num_samples: Optional integer to limit processing to the first N samples
     """
-    output_filename = os.path.join(FINAL_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}.csv")
+    output_filename = os.path.join(MCQ_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}.csv")
     if os.path.exists(output_filename):
         print(f"Results for {model_name} ({prompt_style}) already exist. Skipping.")
         return
@@ -132,8 +132,8 @@ def run_evaluation(model_name, prompt_style='cot', num_samples=None):
         df.at[i, f'Output_without_Panchvakya_{prompt_style}'] = answer_without
         df.at[i, f'Raw_without_Panchvakya_{prompt_style}'] = raw_without
 
-    if not os.path.exists(FINAL_RESULTS_DIR):
-        os.makedirs(FINAL_RESULTS_DIR)
+    if not os.path.exists(MCQ_RESULTS_DIR):
+        os.makedirs(MCQ_RESULTS_DIR)
         
     df.to_csv(output_filename, index=False)
     print(f"Evaluation results saved to {output_filename}")

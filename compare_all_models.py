@@ -2,16 +2,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-from src.config import MODELS_TO_TEST, FINAL_RESULTS_DIR, model_name_to_filename
+from src.config import MODELS_TO_TEST, FINAL_RESULTS_DIR, MCQ_RESULTS_DIR, NUMERICAL_RESULTS_DIR, model_name_to_filename
 import numpy as np
 
-# Constants for model and strategy mappings
-STRATEGY_MAPPING = {
-    'COT_with_Panchavakya': 'C+',
-    'COT_without_Panchavakya': 'C-', 
-    'ZeroShot_with_Panchavakya': 'Z+',
-    'ZeroShot_without_Panchavakya': 'Z-'
-}
+# Configuration: Choose what type of results to analyze
+# Options: "mcq", "numerical", "both"
+ANALYSIS_MODE = "both"  # Change to "numerical" or "both" to analyze different types
+
 
 MODEL_MAPPING = {
     'qwen3-32b': 'Qwen',
@@ -22,43 +19,91 @@ MODEL_MAPPING = {
     'mistral-saba-24b': 'Mistral'
 }
 
-def load_all_results():
+def load_all_results(analysis_mode="mcq"):
     """
-    Load results from all models and prompt styles.
+    Load results from all models and prompt styles for specified analysis mode.
     Returns a comprehensive DataFrame with all results.
+    
+    Args:
+        analysis_mode: "mcq", "numerical", or "both"
     """
     all_results = []
+    
+    if analysis_mode in ["mcq", "both"]:
+        mcq_results = load_mcq_results()
+        all_results.extend(mcq_results)
+    
+    if analysis_mode in ["numerical", "both"]:
+        numerical_results = load_numerical_results()
+        all_results.extend(numerical_results)
+    
+    if not all_results:
+        print(f"No results found for mode: {analysis_mode}! Make sure you've run the evaluations first.")
+        return None
+    
+    return pd.DataFrame(all_results)
+
+def load_mcq_results():
+    """Load MCQ results from all models."""
+    mcq_results = []
     
     for model in MODELS_TO_TEST:
         safe_model_name = model_name_to_filename(model)
         
         # Load COT results
-        cot_file = os.path.join(FINAL_RESULTS_DIR, f"{safe_model_name}_cot.csv")
+        cot_file = os.path.join(MCQ_RESULTS_DIR, f"{safe_model_name}_cot.csv")
         if os.path.exists(cot_file):
             cot_df = pd.read_csv(cot_file)
-            cot_results = calculate_accuracy(cot_df, 'cot')
+            cot_results = calculate_mcq_accuracy(cot_df, 'cot')
             cot_results['model'] = model
             cot_results['model_short'] = model.split('/')[-1]
-            all_results.append(cot_results)
+            cot_results['question_type'] = 'MCQ'
+            mcq_results.append(cot_results)
         
         # Load Zero-Shot results
-        zero_shot_file = os.path.join(FINAL_RESULTS_DIR, f"{safe_model_name}_zero_shot.csv")
+        zero_shot_file = os.path.join(MCQ_RESULTS_DIR, f"{safe_model_name}_zero_shot.csv")
         if os.path.exists(zero_shot_file):
             zero_shot_df = pd.read_csv(zero_shot_file)
-            zero_shot_results = calculate_accuracy(zero_shot_df, 'zero_shot')
+            zero_shot_results = calculate_mcq_accuracy(zero_shot_df, 'zero_shot')
             zero_shot_results['model'] = model
             zero_shot_results['model_short'] = model.split('/')[-1]
-            all_results.append(zero_shot_results)
+            zero_shot_results['question_type'] = 'MCQ'
+            mcq_results.append(zero_shot_results)
     
-    if not all_results:
-        print("No results found! Make sure you've run the evaluations first.")
-        return None
-    
-    return pd.DataFrame(all_results)
+    return pd.DataFrame(mcq_results)
 
-def calculate_accuracy(df, prompt_style):
+def load_numerical_results():
+    """Load numerical results from all models."""
+    numerical_results = []
+    
+    for model in MODELS_TO_TEST:
+        safe_model_name = model_name_to_filename(model)
+        
+        # Load COT results
+        cot_file = os.path.join(NUMERICAL_RESULTS_DIR, f"{safe_model_name}_cot.csv")
+        if os.path.exists(cot_file):
+            cot_df = pd.read_csv(cot_file)
+            cot_results = calculate_numerical_accuracy(cot_df, 'cot')
+            cot_results['model'] = model
+            cot_results['model_short'] = model.split('/')[-1]
+            cot_results['question_type'] = 'Numerical'
+            numerical_results.append(cot_results)
+        
+        # Load Zero-Shot results
+        zero_shot_file = os.path.join(NUMERICAL_RESULTS_DIR, f"{safe_model_name}_zero_shot.csv")
+        if os.path.exists(zero_shot_file):
+            zero_shot_df = pd.read_csv(zero_shot_file)
+            zero_shot_results = calculate_numerical_accuracy(zero_shot_df, 'zero_shot')
+            zero_shot_results['model'] = model
+            zero_shot_results['model_short'] = model.split('/')[-1]
+            zero_shot_results['question_type'] = 'Numerical'
+            numerical_results.append(zero_shot_results)
+    
+    return pd.DataFrame(numerical_results)
+
+def calculate_mcq_accuracy(df, prompt_style):
     """
-    Calculate accuracy for with and without Panchavakya.
+    Calculate accuracy for MCQ with and without Panchavakya.
     """
     with_col = f'Output_with_Panchvakya_{prompt_style}'
     without_col = f'Output_without_Panchvakya_{prompt_style}'
@@ -81,7 +126,30 @@ def calculate_accuracy(df, prompt_style):
         'without_panchavakya_total': without_panchavakya_total
     }
 
-def create_comparison_charts(results_df):
+def calculate_numerical_accuracy(df, prompt_style):
+    """
+    Calculate accuracy for numerical questions with and without Panchavakya.
+    """
+    with_col = f'Accuracy_with_Panchvakya_{prompt_style}'
+    without_col = f'Accuracy_without_Panchvakya_{prompt_style}'
+    
+    # Calculate accuracy with Panchavakya (already calculated as 0/1 values)
+    with_panchavakya_accuracy = df[with_col].mean() * 100 if with_col in df.columns else 0
+    with_panchavakya_total = df[with_col].notna().sum() if with_col in df.columns else 0
+    
+    # Calculate accuracy without Panchavakya
+    without_panchavakya_accuracy = df[without_col].mean() * 100 if without_col in df.columns else 0
+    without_panchavakya_total = df[without_col].notna().sum() if without_col in df.columns else 0
+    
+    return {
+        'prompt_style': prompt_style.upper(),
+        'with_panchavakya_accuracy': with_panchavakya_accuracy,
+        'without_panchavakya_accuracy': without_panchavakya_accuracy,
+        'with_panchavakya_total': with_panchavakya_total,
+        'without_panchavakya_total': without_panchavakya_total
+    }
+
+def create_comparison_charts(results_df, analysis_mode="mcq"):
     """
     Create comprehensive comparison charts with enhanced annotations.
     """
@@ -89,22 +157,39 @@ def create_comparison_charts(results_df):
     plt.style.use('default')
     sns.set_palette("husl")
     
+    # Determine title based on analysis mode
+    if analysis_mode == "mcq":
+        main_title = 'Math-Nyaya MCQ Performance Comparison'
+    elif analysis_mode == "numerical":
+        main_title = 'Math-Nyaya Numerical Performance Comparison'
+    else:
+        main_title = 'Math-Nyaya Comprehensive Performance Comparison'
+    
     # Create figure with subplots - 1 row, 2 columns for the two main charts
     fig, axes = plt.subplots(1, 2, figsize=(20, 10))
-    fig.suptitle('Math-Nyaya Model Performance Comparison', fontsize=24, fontweight='bold', y=0.95)
+    fig.suptitle(main_title, fontsize=24, fontweight='bold', y=0.95)
     
     # Chart 1: Overall Accuracy Comparison (grouped bar chart)
     ax1 = axes[0]
-    create_grouped_bar_chart(results_df, ax1)
+    create_grouped_bar_chart(results_df, ax1, analysis_mode)
     
     # Chart 2: COT vs Zero-Shot Performance
     ax2 = axes[1]
-    create_method_comparison_chart(results_df, ax2)
+    create_method_comparison_chart(results_df, ax2, analysis_mode)
     
     plt.tight_layout(rect=[0, 0.03, 1, 0.92])  # Adjust layout to accommodate suptitle
     
-    # Save the comprehensive chart
-    output_path = os.path.join(FINAL_RESULTS_DIR, 'model_comparision.png')
+    # Save the comprehensive chart with appropriate filename
+    if analysis_mode == "numerical":
+        os.makedirs(NUMERICAL_RESULTS_DIR, exist_ok=True)
+        output_path = os.path.join(NUMERICAL_RESULTS_DIR, 'numerical_model_comparison.png')
+    elif analysis_mode == "both":
+        os.makedirs(FINAL_RESULTS_DIR, exist_ok=True)
+        output_path = os.path.join(FINAL_RESULTS_DIR, 'comprehensive_model_comparison.png')
+    else:  # mcq
+        os.makedirs(MCQ_RESULTS_DIR, exist_ok=True)
+        output_path = os.path.join(MCQ_RESULTS_DIR, 'mcq_model_comparison.png')
+    
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')
     print(f"Comprehensive comparison chart saved to: {output_path}")
     
@@ -121,10 +206,18 @@ def add_percentage_labels_to_bars(ax, bars, values, fontsize=8):
                    f'{value:.1f}%', ha='center', va='bottom', 
                    fontsize=fontsize, fontweight='bold')
 
-def create_grouped_bar_chart(results_df, ax):
+def create_grouped_bar_chart(results_df, ax, analysis_mode="mcq"):
     """
     Create a grouped bar chart showing all accuracies with percentage annotations.
     """
+    # Handle different question types if analysis_mode is "both"
+    if analysis_mode == "both":
+        # For combined analysis, group by question type as well
+        question_types = results_df['question_type'].unique()
+        if len(question_types) > 1:
+            create_combined_grouped_bar_chart(results_df, ax)
+            return
+    
     # Prepare data for grouped bar chart
     models = results_df['model_short'].unique()
     x = np.arange(len(models))
@@ -161,14 +254,65 @@ def create_grouped_bar_chart(results_df, ax):
     
     ax.set_xlabel('Models', fontweight='bold')
     ax.set_ylabel('Accuracy (%)', fontweight='bold')
-    ax.set_title('Overall Model Performance Comparison', fontweight='bold')
+    
+    title_suffix = ""
+    if analysis_mode == "numerical":
+        title_suffix = " (Numerical Questions)"
+    elif analysis_mode == "mcq":
+        title_suffix = " (MCQ Questions)"
+    
+    ax.set_title(f'Overall Model Performance Comparison{title_suffix}', fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(models, rotation=45, ha='right')
     ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
     ax.grid(True, alpha=0.3)
     ax.set_ylim(0, 105)  # Slightly higher to accommodate labels
 
-def create_method_comparison_chart(results_df, ax):
+def create_combined_grouped_bar_chart(results_df, ax):
+    """
+    Create a grouped bar chart for combined MCQ and Numerical results.
+    """
+    # Group by question type and model
+    models = results_df['model_short'].unique()
+    question_types = results_df['question_type'].unique()
+    
+    x = np.arange(len(models))
+    width = 0.35
+    
+    # Calculate average performance for each question type
+    mcq_avg = []
+    numerical_avg = []
+    
+    for model in models:
+        model_data = results_df[results_df['model_short'] == model]
+        
+        # MCQ average (with + without) / 2
+        mcq_data = model_data[model_data['question_type'] == 'MCQ']
+        mcq_avg_acc = ((mcq_data['with_panchavakya_accuracy'].mean() + mcq_data['without_panchavakya_accuracy'].mean()) / 2) if len(mcq_data) > 0 else 0
+        mcq_avg.append(mcq_avg_acc)
+        
+        # Numerical average (with + without) / 2  
+        num_data = model_data[model_data['question_type'] == 'Numerical']
+        num_avg_acc = ((num_data['with_panchavakya_accuracy'].mean() + num_data['without_panchavakya_accuracy'].mean()) / 2) if len(num_data) > 0 else 0
+        numerical_avg.append(num_avg_acc)
+    
+    bars1 = ax.bar(x - width/2, mcq_avg, width, label='MCQ Questions', alpha=0.8, color='#2ca02c')
+    bars2 = ax.bar(x + width/2, numerical_avg, width, label='Numerical Questions', alpha=0.8, color='#d62728')
+    
+    # Add percentage annotations
+    add_percentage_labels_to_bars(ax, bars1, mcq_avg, fontsize=9)
+    add_percentage_labels_to_bars(ax, bars2, numerical_avg, fontsize=9)
+    
+    ax.set_xlabel('Models', fontweight='bold')
+    ax.set_ylabel('Average Accuracy (%)', fontweight='bold')
+    ax.set_title('MCQ vs Numerical Performance Comparison', fontweight='bold')
+    ax.set_xticks(x)
+    ax.set_xticklabels(models, rotation=45, ha='right')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    ax.set_ylim(0, 105)
+
+def create_method_comparison_chart(results_df, ax, analysis_mode="mcq"):
     """
     Create a comparison chart between COT and Zero-Shot methods with percentage annotations.
     """
@@ -201,7 +345,14 @@ def create_method_comparison_chart(results_df, ax):
     
     ax.set_xlabel('Models', fontweight='bold')
     ax.set_ylabel('Average Accuracy (%)', fontweight='bold')
-    ax.set_title('COT vs Zero-Shot Performance', fontweight='bold')
+    
+    title_suffix = ""
+    if analysis_mode == "numerical":
+        title_suffix = " (Numerical Questions)"
+    elif analysis_mode == "mcq":
+        title_suffix = " (MCQ Questions)"
+    
+    ax.set_title(f'COT vs Zero-Shot Performance{title_suffix}', fontweight='bold')
     ax.set_xticks(x)
     ax.set_xticklabels(models, rotation=45, ha='right')
     ax.legend()
@@ -227,12 +378,18 @@ def print_summary_table(results_df):
     
     print("\n" + "="*100)
 
-def load_detailed_results():
+def load_detailed_results(file_type="mcq"):
     """
     Load detailed question-by-question results from all models and strategies.
     Returns a comprehensive DataFrame with question-level results.
     """
     all_detailed_results = []
+    
+    # Determine which directory and file pattern to use
+    if file_type == "numerical":
+        results_dir = NUMERICAL_RESULTS_DIR
+    else:
+        results_dir = MCQ_RESULTS_DIR
     
     for model in MODELS_TO_TEST:
         safe_model_name = model_name_to_filename(model)
@@ -240,10 +397,10 @@ def load_detailed_results():
         
         # Define file paths and strategy mappings
         files_and_strategies = [
-            (os.path.join(FINAL_RESULTS_DIR, f"{safe_model_name}_cot.csv"), 
+            (os.path.join(results_dir, f"{safe_model_name}_cot.csv"), 
              [('COT_with_Panchavakya', 'Output_with_Panchvakya_cot'),
               ('COT_without_Panchavakya', 'Output_without_Panchvakya_cot')]),
-            (os.path.join(FINAL_RESULTS_DIR, f"{safe_model_name}_zero_shot.csv"),
+            (os.path.join(results_dir, f"{safe_model_name}_zero_shot.csv"),
              [('ZeroShot_with_Panchavakya', 'Output_with_Panchvakya_zero_shot'),
               ('ZeroShot_without_Panchavakya', 'Output_without_Panchvakya_zero_shot')])
         ]
@@ -254,25 +411,38 @@ def load_detailed_results():
                 df = pd.read_csv(file_path)
                 for idx, row in df.iterrows():
                     for strategy_name, output_column in strategies:
-                        question_result = {
-                            'question_id': idx + 1,
-                            'correct_answer': row['correct_letter'],
-                            'model': model,
-                            'model_short': model_short,
-                            'strategy': strategy_name,
-                            'predicted_answer': row.get(output_column, ''),
-                            'is_correct': row.get(output_column, '') == row['correct_letter']
-                        }
+                        if file_type == "numerical":
+                            # For numerical questions, compare exact values (Answer column)
+                            question_result = {
+                                'question_id': idx + 1,
+                                'correct_answer': row['Answer'],
+                                'model': model,
+                                'model_short': model_short,
+                                'strategy': strategy_name,
+                                'predicted_answer': row.get(output_column, ''),
+                                'is_correct': str(row.get(output_column, '')).strip() == str(row['Answer']).strip()
+                            }
+                        else:
+                            # For MCQ questions, compare letters
+                            question_result = {
+                                'question_id': idx + 1,
+                                'correct_answer': row['correct_letter'],
+                                'model': model,
+                                'model_short': model_short,
+                                'strategy': strategy_name,
+                                'predicted_answer': row.get(output_column, ''),
+                                'is_correct': row.get(output_column, '') == row['correct_letter']
+                            }
                         all_detailed_results.append(question_result)
     
     return pd.DataFrame(all_detailed_results)
 
-def create_question_results_table(detailed_df):
+def create_question_results_table(detailed_df, file_type="mcq"):
     """
     Create a pivot table showing question-by-question results for all models and strategies.
     """
     if detailed_df.empty:
-        print("No detailed results found!")
+        print(f"No detailed {file_type} results found!")
         return None
     
     # Create a column name that combines model and strategy
@@ -280,14 +450,21 @@ def create_question_results_table(detailed_df):
     
     # Create pivot table with questions as rows and model_strategy as columns
     pivot_df = detailed_df.pivot_table(
-        index='question_id', 
-        columns='model_strategy', 
+        index='question_id',
+        columns='model_strategy',
         values='is_correct',
-        aggfunc='first'  # Use first since there should be only one value per combination
+        aggfunc='first'  # Since each combination should be unique
     )
     
-    # Convert boolean to int for better display (1 = correct, 0 = incorrect)
+    # Convert boolean to int for better visualization (1 for correct, 0 for incorrect)
     pivot_df = pivot_df.astype(int)
+    
+    # Save the pivot table to CSV
+    results_dir = NUMERICAL_RESULTS_DIR if file_type == "numerical" else MCQ_RESULTS_DIR
+    os.makedirs(results_dir, exist_ok=True)
+    output_path = os.path.join(results_dir, 'question_results_table.csv')
+    pivot_df.to_csv(output_path)
+    print(f"Question results table saved to: {output_path}")
     
     return pivot_df
 
@@ -356,7 +533,7 @@ def print_detailed_summary(detailed_df):
     
     print("\n" + "="*120)
 
-def create_csv_style_table(detailed_df):
+def create_csv_style_table(detailed_df, file_type="mcq"):
     """
     Create separate CSV-style table visualizations for COT and Zero-Shot strategies.
     """
@@ -365,10 +542,10 @@ def create_csv_style_table(detailed_df):
         return
     
     # Create separate tables for COT and Zero-Shot
-    create_strategy_table(detailed_df, 'COT', 'Chain-of-Thought (COT) Results')
-    create_strategy_table(detailed_df, 'ZeroShot', 'Zero-Shot Results')
+    create_strategy_table(detailed_df, 'COT', 'Chain-of-Thought (COT) Results', file_type)
+    create_strategy_table(detailed_df, 'ZeroShot', 'Zero-Shot Results', file_type)
 
-def create_strategy_table(detailed_df, strategy_prefix, title):
+def create_strategy_table(detailed_df, strategy_prefix, title, file_type="mcq"):
     """
     Create a table for a specific strategy (COT or ZeroShot) with full model names.
     """
@@ -490,11 +667,13 @@ def create_strategy_table(detailed_df, strategy_prefix, title):
     
     # Save the table with high quality
     strategy_clean = strategy_prefix.lower()
-    output_path = os.path.join(FINAL_RESULTS_DIR, f'question_results_{strategy_clean}_table.png')
+    results_dir = NUMERICAL_RESULTS_DIR if file_type == "numerical" else MCQ_RESULTS_DIR
+    os.makedirs(results_dir, exist_ok=True)
+    output_path = os.path.join(results_dir, f'question_results_{strategy_clean}_table.png')
     plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white', pad_inches=0.5)
     print(f"{title} table saved to: {output_path}")
     
-    plt.show()
+    plt.close()  # Changed from plt.show() to plt.close() to avoid blocking
     
     return pivot_df
 
@@ -502,48 +681,97 @@ def main():
     """
     Main function to create all comparison charts and detailed analysis.
     """
-    print("Loading results from all models...")
-    results_df = load_all_results()
+    print("=" * 80)
+    print("🔍 COMPREHENSIVE MODEL COMPARISON ANALYSIS")
+    print("=" * 80)
     
-    if results_df is None:
-        return
-    
-    print(f"Loaded results for {len(results_df['model'].unique())} models")
-    
-    # Print summary table
-    print_summary_table(results_df)
-    
-    # Create comparison charts
-    print("\nGenerating comprehensive comparison charts...")
-    create_comparison_charts(results_df)
-    
-    # Load detailed question-by-question results
-    print("\nLoading detailed question-by-question results...")
-    detailed_df = load_detailed_results()
-    
-    if not detailed_df.empty:
-        print(f"Loaded detailed results for {len(detailed_df)} question-model-strategy combinations")
+    # Determine what to analyze based on ANALYSIS_MODE
+    if ANALYSIS_MODE == "both":
+        print("📊 Analyzing both MCQ and Numerical results...")
         
-        # Print detailed summary
-        print_detailed_summary(detailed_df)
+        # Generate MCQ analysis
+        print("\n--- MCQ ANALYSIS ---")
+        results_df = load_mcq_results()
+        if not results_df.empty:
+            print(f"Loaded MCQ results for {len(results_df['model'].unique())} models")
+            print_summary_table(results_df)
+            create_comparison_charts(results_df, analysis_mode="mcq")
+            
+            # Generate detailed question results table for MCQ
+            detailed_df = load_detailed_results(file_type="mcq")
+            if not detailed_df.empty:
+                pivot_table = create_question_results_table(detailed_df, file_type="mcq")
+                print_detailed_summary(detailed_df)
+                
+                # Create additional visualizations
+                print("\nGenerating MCQ visualization tables...")
+                create_csv_style_table(detailed_df, file_type="mcq")
+        else:
+            print("❌ No MCQ results found!")
         
-        # Save detailed results to CSV
-        print("\nSaving detailed results...")
-        pivot_df = save_detailed_results_csv(detailed_df)
-        
-        # Create separate CSV-style table visualizations for COT and Zero-Shot
-        print("\nGenerating separate results tables for COT and Zero-Shot...")
-        create_csv_style_table(detailed_df)
-        
-        # Print sample of the pivot table
-        if pivot_df is not None:
-            print(f"\nSample of Question Results Table (first 10 questions):")
-            print("-" * 120)
-            print(pivot_df.head(10))
-    else:
-        print("No detailed results found!")
+        # Generate Numerical analysis  
+        print("\n--- NUMERICAL ANALYSIS ---")
+        numerical_results_df = load_numerical_results()
+        if not numerical_results_df.empty:
+            print(f"Loaded Numerical results for {len(numerical_results_df['model'].unique())} models")
+            print_summary_table(numerical_results_df)
+            create_comparison_charts(numerical_results_df, analysis_mode="numerical")
+            
+            # Generate detailed question results table for Numerical
+            detailed_numerical_df = load_detailed_results(file_type="numerical")
+            if not detailed_numerical_df.empty:
+                pivot_table_numerical = create_question_results_table(detailed_numerical_df, file_type="numerical")
+                print_detailed_summary(detailed_numerical_df)
+                
+                # Create additional visualizations
+                print("\nGenerating Numerical visualization tables...")
+                create_csv_style_table(detailed_numerical_df, file_type="numerical")
+        else:
+            print("❌ No Numerical results found!")
     
-    print("\nComplete analysis finished!")
+    elif ANALYSIS_MODE == "numerical":
+        print("🔢 Analyzing Numerical results only...")
+        results_df = load_numerical_results()
+        if not results_df.empty:
+            print(f"Loaded Numerical results for {len(results_df['model'].unique())} models")
+            print_summary_table(results_df)
+            create_comparison_charts(results_df, analysis_mode="numerical")
+            
+            # Generate detailed question results table
+            detailed_df = load_detailed_results(file_type="numerical")
+            if not detailed_df.empty:
+                pivot_table = create_question_results_table(detailed_df, file_type="numerical")
+                print_detailed_summary(detailed_df)
+                
+                # Create additional visualizations
+                print("\nGenerating Numerical visualization tables...")
+                create_csv_style_table(detailed_df, file_type="numerical")
+        else:
+            print("❌ No Numerical results found!")
+    
+    else:  # mcq mode (default)
+        print("📝 Analyzing MCQ results only...")
+        results_df = load_mcq_results()
+        if not results_df.empty:
+            print(f"Loaded MCQ results for {len(results_df['model'].unique())} models")
+            print_summary_table(results_df)
+            create_comparison_charts(results_df, analysis_mode="mcq")
+            
+            # Generate detailed question results table
+            detailed_df = load_detailed_results(file_type="mcq")
+            if not detailed_df.empty:
+                pivot_table = create_question_results_table(detailed_df, file_type="mcq")
+                print_detailed_summary(detailed_df)
+                
+                # Create additional visualizations
+                print("\nGenerating MCQ visualization tables...")
+                create_csv_style_table(detailed_df, file_type="mcq")
+        else:
+            print("❌ No MCQ results found!")
+    
+    print("\n" + "="*80)
+    print("✅ Analysis complete! Check the results directories for generated charts.")
+    print("="*80)
 
 if __name__ == "__main__":
     main()

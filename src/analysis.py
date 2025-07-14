@@ -3,13 +3,13 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
 import os
-from src.config import FINAL_RESULTS_DIR, model_name_to_filename
+from src.config import FINAL_RESULTS_DIR, MCQ_RESULTS_DIR, model_name_to_filename
 
 def analyze_results(model_name, prompt_style='cot'):
     """
     Generates and saves confusion matrices and classification reports.
     """
-    filename = os.path.join(FINAL_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}.csv")
+    filename = os.path.join(MCQ_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}.csv")
     if not os.path.exists(filename):
         print(f"Results file not found: {filename}")
         return
@@ -50,7 +50,7 @@ def analyze_results(model_name, prompt_style='cot'):
 
     plt.tight_layout()
     
-    plot_filename = os.path.join(FINAL_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}_analysis.png")
+    plot_filename = os.path.join(MCQ_RESULTS_DIR, f"{model_name_to_filename(model_name)}_{prompt_style}_analysis.png")
     plt.savefig(plot_filename)
     print(f"Analysis plot saved to {plot_filename}")
     plt.close()

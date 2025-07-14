@@ -8,9 +8,14 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 RAW_DATA_DIR = "data/raw"
 PROCESSED_DATA_DIR = "data/processed"
 FINAL_RESULTS_DIR = "data/processed/final_results"
+MCQ_RESULTS_DIR = "data/processed/final_results/mcq"
+NUMERICAL_RESULTS_DIR = "data/processed/final_results/numerical"
 
+# Data paths for both MCQ and numerical questions
 RAW_DATA_PATH = os.path.join(RAW_DATA_DIR, "initial_questions.csv")
+GSM8K_DATA_PATH = os.path.join(RAW_DATA_DIR, "GSM8K wrong Questions - Sample Questions.csv")
 PANCHAVAKYA_DATA_PATH = os.path.join(PROCESSED_DATA_DIR, "questions_with_panchavakya.csv")
+NUMERICAL_PANCHAVAKYA_DATA_PATH = os.path.join(PROCESSED_DATA_DIR, "numerical_questions_with_panchavakya.csv")
 
 # Utility function to convert model names to safe filenames
 def model_name_to_filename(model_name):
@@ -175,5 +180,67 @@ Option D: {optionD}
 
 Example response:
 {{ "answer": "C" }}
+"""
+}
+
+# Numerical question specific system prompts
+NUMERICAL_COT_SYSTEM_PROMPTS = {
+    True: """
+You are an assistant helping to solve mathematical word problems using formal reasoning. For each question, read the Panchavakya logical structure and calculate the numerical answer.
+
+First think step by step. Use the Panchavakya elements to logically reason through the question and arrive at the numerical answer.
+
+Question:
+{question_text}
+
+Panchavakya (Logical Structure):
+Hetu (Reason): {hetu}
+Udāharaṇa (Example): {udaharana}
+Upanaya (Application): {upanaya}
+
+Reason through the problem step by step and provide the numerical answer in JSON format.
+Example response:
+{{ "answer": "25" }}
+""",
+    False: """
+You are an assistant helping to solve mathematical word problems. Use the question to calculate the numerical answer.
+
+First think step by step. Analyze the question carefully, identify the key information, perform the calculations, and provide the final numerical answer.
+
+Question:
+{question_text}
+
+Reason through the problem step by step and provide the numerical answer in JSON format.
+Example response:
+{{ "answer": "42" }}
+"""
+}
+
+NUMERICAL_ZERO_SHOT_SYSTEM_PROMPTS = {
+    True: """
+You are an assistant helping to solve mathematical word problems using formal reasoning. For each question, read the Panchavakya logical structure and determine the numerical answer.
+
+Question:
+{question_text}
+
+Panchavakya (Logical Structure):
+Hetu (Reason): {hetu}
+Udāharaṇa (Example): {udaharana}
+Upanaya (Application): {upanaya}
+
+What is the numerical answer based on the Panchavakya reasoning? Reply with only the number in JSON format.
+
+Example response:
+{{ "answer": "15" }}
+""",
+    False: """
+You are an assistant helping to solve mathematical word problems. Calculate the numerical answer for the given question.
+
+Question:
+{question_text}
+
+Provide only the numerical answer in JSON format.
+Example response:
+{{ "answer": "7" }}
 """
 }
