@@ -60,6 +60,19 @@ This project evaluates whether providing a structured logical argument, based on
 5. **View Results**:
    Results will be saved in `data/processed/final_results/` with CSV files and visualizations for each model and prompt style.
 
+6. **Generate Comparison Charts**:
+   To create comprehensive comparison charts across all models:
+   ```bash
+   python compare_all_models.py
+   ```
+   This will generate a comprehensive comparison chart saved as `model_comparision.png`.
+
+## Results
+
+![Model Comparison](data/processed/final_results/model_comparision.png)
+
+The comprehensive comparison chart shows the performance of all evaluated models using both Chain-of-Thought (COT) and Zero-Shot prompting, with and without Panchavakya logical reasoning framework.
+
 ## Models
 
 The following models are being tested:

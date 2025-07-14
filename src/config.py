@@ -93,7 +93,7 @@ Nigamana : "YOUR CORRECT NIGAMANA GOES HERE"
 
 COT_SYSTEM_PROMPTS = {
     True: """
-You are an assistant helping to solve multiple-choice questions using formal reasoning. For each question, read the Panchavakya (five-part logical structure) and determine the correct option (A, B, C, D, etc.).
+You are an assistant helping to solve multiple-choice questions using formal reasoning. For each question, read the Panchavakya logical structure and determine the correct option (A, B, C, D, etc.).
 
 First think step by step. Use the Panchavakya elements to logically reason through the question.
 
@@ -106,12 +106,10 @@ Option B: {optionB}
 Option C: {optionC}
 Option D: {optionD}
 
-Panchavakya (Five Parts of the Argument):
-Pratijña (Claim): {pratijna}
+Panchavakya (Logical Structure):
 Hetu (Reason): {hetu}
 Udāharaṇa (Example): {udaharana}
 Upanaya (Application): {upanaya}
-Nigamana (Conclusion): {nigamana}
 
 Reason through the options and provide the correct answer as a single letter (A, B, C, D, etc.) in JSON format.
 the answer should be in json format.
@@ -141,7 +139,7 @@ Example response:
 
 ZERO_SHOT_SYSTEM_PROMPTS = {
     True: """
-You are an assistant helping to solve multiple-choice questions using formal reasoning. For each question, read the Panchavakya (five-part logical structure) and determine the correct option (A, B, C, D, etc.). Respond only with the correct option letter and nothing else.
+You are an assistant helping to solve multiple-choice questions using formal reasoning. For each question, read the Panchavakya logical structure and determine the correct option (A, B, C, D, etc.). Respond only with the correct option letter and nothing else.
 
 Question:
 {question_text}
@@ -152,12 +150,10 @@ Option B: {optionB}
 Option C: {optionC}
 Option D: {optionD}
 
-Panchavakya (Five Parts of the Argument):
-Pratijña (Claim): {pratijna}
+Panchavakya (Logical Structure):
 Hetu (Reason): {hetu}
 Udāharaṇa (Example): {udaharana}
 Upanaya (Application): {upanaya}
-Nigamana (Conclusion): {nigamana}
 
 Which option is correct based on the Panchavakya reasoning? Reply with the option letter (A, B, C, D, etc.) in JSON format.
 
@@ -167,6 +163,15 @@ Example response:
 
     False: """
 You are an assistant helping to solve multiple-choice questions. Use only the question and the options to choose the best answer. Respond only with the correct option letter (A, B, C, D, etc.) in JSON format.
+
+Question:
+{question_text}
+
+Options:
+Option A: {optionA}
+Option B: {optionB}
+Option C: {optionC}
+Option D: {optionD}
 
 Example response:
 {{ "answer": "C" }}

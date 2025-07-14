@@ -1,4 +1,4 @@
-category,question,human_answer,correct_answer,multiple_choice,multi_choice_question,correct_letter,model_answer,Panchavakya,Pratijna,Hetu,Udaharana,Upanaya,Nigamana
+category,question,human_answer,correct_answer,multiple_choice,multi_choice_question,correct_letter,model_answer,Panchavakya,Pratijna,Hetu,Udaharana,Upanaya,Nigamana,Output_with_Panchvakya_cot,Output_without_Panchvakya_cot,Raw_with_Panchvakya_cot,Raw_without_Panchvakya_cot
 Puzzle,You have six horses and want to race them to see which is fastest. What is the minimum number of races needed to do this?,Race them on a single race track with at least six lanes - the order in which they cross the finish line determines which is the fastest.,One,"['One', 'Three', 'Unknown', 'Two']","QUESTION
 You have six horses and want to race them to see which is fastest. What is the minimum number of races needed to do this?
 
@@ -25,7 +25,45 @@ Therefore, the minimum number of races needed to find the fastest horse among si
   ""Udaharana"": ""In a standard sprint race with multiple runners, the winner is determined in one race without requiring additional trials."",
   ""Upanaya"": ""Here, all six horses can be raced simultaneously, so the fastest horse is identified in a single race."",
   ""Nigamana"": ""Therefore, only one race is required to determine the fastest horse among six.""
-}",The minimum number of races needed is one.,"In a single race, the fastest horse will naturally finish first, directly establishing its superiority.","In a standard sprint race with multiple runners, the winner is determined in one race without requiring additional trials.","Here, all six horses can be raced simultaneously, so the fastest horse is identified in a single race.","Therefore, only one race is required to determine the fastest horse among six."
+}",The minimum number of races needed is one.,"In a single race, the fastest horse will naturally finish first, directly establishing its superiority.","In a standard sprint race with multiple runners, the winner is determined in one race without requiring additional trials.","Here, all six horses can be raced simultaneously, so the fastest horse is identified in a single race.","Therefore, only one race is required to determine the fastest horse among six.",A,C,"To determine the minimum number of races needed to find the fastest horse out of six, we need to consider the logical structure provided:
+
+1. **Hetu (Reason)**: In a single race, the fastest horse will naturally finish first, directly establishing its superiority.
+2. **Udāharaṇa (Example)**: In a standard sprint race with multiple runners, the winner is determined in one race without requiring additional trials.
+3. **Upanaya (Application)**: Here, all six horses can be raced simultaneously, so the fastest horse is identified in a single race.
+
+Given this logical structure, we can reason as follows:
+
+- If all six horses are raced simultaneously in one race, the horse that finishes first is the fastest.
+- There is no need for additional races to determine the fastest horse because the fastest horse will be identified in the first race.
+
+Therefore, the minimum number of races needed is one.
+
+```json
+{ ""answer"": ""A"" }
+```","To determine the minimum number of races needed to find the fastest horse out of six, we can use a process of elimination.
+
+1. **First Race**: Divide the six horses into three pairs and race each pair. This will take 3 races.
+   - Race 1: Horses A vs. B
+   - Race 2: Horses C vs. D
+   - Race 3: Horses E vs. F
+
+   After these races, we have the winners: A, C, and E.
+
+2. **Second Race**: Race the winners of the first three races to determine the fastest horse.
+   - Race 4: Horses A vs. C vs. E
+
+   The winner of this race is the fastest horse overall.
+
+3. **Third Race**: To determine the second and third fastest horses, race the second-place horses from the first three races and the loser of the fourth race.
+   - Race 5: Losers from Race 1 (B), Race 2 (D), and Race 4 (either A, C, or E)
+
+   This race will determine the second and third fastest horses.
+
+Therefore, the minimum number of races needed is 5.
+
+Since none of the options match this, the correct answer is:
+
+{ ""answer"": ""C"" }"
 Puzzle,"Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a gold bar; behind the others, rotten vegetables. You pick a door, say No. 1, and the host asks you 'Do you want to pick door No. 2 instead?' What choice of door now gives you the biggest advantage?",It is not an advantage to switch. It makes no difference if I switch or not because no additional material information has been provided since the initial choice.,They have equal probability of winning,"['Door No.2', 'Door No.1', 'Door No.3', 'They have equal probability of winning']","QUESTION
 Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a gold bar; behind the others, rotten vegetables. You pick a door, say No. 1, and the host asks you 'Do you want to pick door No. 2 instead?' What choice of door now gives you the biggest advantage?
 
@@ -50,7 +88,31 @@ Given this analysis, the best strategy is to switch doors, as this gives you a 2
   ""Udaharana"": ""In a three-door scenario, if you initially pick a door with a 1/3 chance of success, the host opens another door to show a vegetable, leaving the final unopened door with a 2/3 probability of containing the gold bar."",
   ""Upanaya"": ""In this case, after the host reveals a vegetable door, the probability distribution shifts: your original choice retains 1/3 chance, while the remaining unopened door now holds 2/3 chance, as the host's action is deterministic and informative."",
   ""Nigamana"": ""Therefore, switching doors (Option A or C) maximizes your probability of winning the gold bar from 1/3 to 2/3.""
-}",Switching to the remaining unopened door (Option A or C) gives a higher probability of winning the gold bar.,"The host's action of revealing a vegetable door provides probabilistic information—initially, there's a 1/3 chance of selecting the gold bar, and the remaining unchosen door accumulates the 2/3 probability after one vegetable door is revealed.","In a three-door scenario, if you initially pick a door with a 1/3 chance of success, the host opens another door to show a vegetable, leaving the final unopened door with a 2/3 probability of containing the gold bar.","In this case, after the host reveals a vegetable door, the probability distribution shifts: your original choice retains 1/3 chance, while the remaining unopened door now holds 2/3 chance, as the host's action is deterministic and informative.","Therefore, switching doors (Option A or C) maximizes your probability of winning the gold bar from 1/3 to 2/3."
+}",Switching to the remaining unopened door (Option A or C) gives a higher probability of winning the gold bar.,"The host's action of revealing a vegetable door provides probabilistic information—initially, there's a 1/3 chance of selecting the gold bar, and the remaining unchosen door accumulates the 2/3 probability after one vegetable door is revealed.","In a three-door scenario, if you initially pick a door with a 1/3 chance of success, the host opens another door to show a vegetable, leaving the final unopened door with a 2/3 probability of containing the gold bar.","In this case, after the host reveals a vegetable door, the probability distribution shifts: your original choice retains 1/3 chance, while the remaining unopened door now holds 2/3 chance, as the host's action is deterministic and informative.","Therefore, switching doors (Option A or C) maximizes your probability of winning the gold bar from 1/3 to 2/3.",A,B,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The host's action of revealing a vegetable door provides probabilistic information. Initially, there's a 1/3 chance of selecting the gold bar. The remaining unchosen door accumulates the 2/3 probability after one vegetable door is revealed.
+
+2. **Udāharaṇa (Example)**: In a three-door scenario, if you initially pick a door with a 1/3 chance of success, the host opens another door to show a vegetable, leaving the final unopened door with a 2/3 probability of containing the gold bar.
+
+3. **Upanaya (Application)**: In this case, after the host reveals a vegetable door, the probability distribution shifts: your original choice retains 1/3 chance, while the remaining unopened door now holds 2/3 chance, as the host's action is deterministic and informative.
+
+Given this reasoning, the correct choice is to switch to the remaining unopened door, which now has a 2/3 chance of containing the gold bar.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""A"" }
+```","To determine the best choice, let's analyze the situation step by step:
+
+1. You initially choose Door No. 1.
+2. The host asks if you want to switch to Door No. 2.
+3. The key point is that the host knows what is behind each door and will always offer you a switch to a door that does not have the gold bar.
+
+Given this information, switching to Door No. 2 does not change the probability of winning the gold bar because the host's action does not provide any new information about the contents of Door No. 2. The probability of the gold bar being behind Door No. 1 or Door No. 2 remains the same as it was initially.
+
+Therefore, the best choice is to stick with Door No. 1, as switching to Door No. 2 does not increase your chances of winning.
+
+{ ""answer"": ""B"" }"
 Spatial,"You are playing Russian roulette with a six-shooter revolver. Your opponent puts in five bullets, spins the chambers and fires at himself, but no bullet comes out. He gives you the choice of whether or not you should spin the chambers again before firing at yourself. Should you spin?","Yes, you should spin again. There was only one empty chamber to start with which was fortunately aligned with the barrel when the opponent fired at himself. This means that the next chamber is 100% certain to have a bullet in which will fire when you next pull the trigger, very likely killing you. However, if you spin the chamber then you have a 5/6 chance of firing a bullet and a 1/6 chance of getting the empty chamber.","Yes, you should spin again","['No, you should not spin again', 'The probabilities are random and unknown', 'It makes no difference if you spin again or not', 'Yes, you should spin again']","QUESTION
 You are playing Russian roulette with a six-shooter revolver. Your opponent puts in five bullets, spins the chambers and fires at himself, but no bullet comes out. He gives you the choice of whether or not you should spin the chambers again before firing at yourself. Should you spin?
 
@@ -81,7 +143,42 @@ Therefore, the logical choice is to spin the chambers again to have at least a 1
   ""Udaharana"": ""Imagine a ring of six slots with five bullets (B) and one empty (E): B-B-B-E-B-B. Once E fires, advancing to the next always lands on B."",
   ""Upanaya"": ""In our game, your opponent’s shot came from the lone empty slot; without spinning, your shot moves to the next sequential slot, which must be loaded."",
   ""Nigamana"": ""Therefore, to restore a 1-in-6 chance rather than a certain death, you should spin again.""
-}",You should spin the chambers again before firing.,"If you don’t spin, the very next chamber must contain a bullet—there’s only one empty chamber and it’s just been used.","Imagine a ring of six slots with five bullets (B) and one empty (E): B-B-B-E-B-B. Once E fires, advancing to the next always lands on B.","In our game, your opponent’s shot came from the lone empty slot; without spinning, your shot moves to the next sequential slot, which must be loaded.","Therefore, to restore a 1-in-6 chance rather than a certain death, you should spin again."
+}",You should spin the chambers again before firing.,"If you don’t spin, the very next chamber must contain a bullet—there’s only one empty chamber and it’s just been used.","Imagine a ring of six slots with five bullets (B) and one empty (E): B-B-B-E-B-B. Once E fires, advancing to the next always lands on B.","In our game, your opponent’s shot came from the lone empty slot; without spinning, your shot moves to the next sequential slot, which must be loaded.","Therefore, to restore a 1-in-6 chance rather than a certain death, you should spin again.",C,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: If you don’t spin, the very next chamber must contain a bullet—there’s only one empty chamber and it’s just been used.
+2. **Udāharaṇa (Example)**: Imagine a ring of six slots with five bullets (B) and one empty (E): B-B-B-E-B-B. Once E fires, advancing to the next always lands on B.
+3. **Upanaya (Application)**: In our game, your opponent’s shot came from the lone empty slot; without spinning, your shot moves to the next sequential slot, which must be loaded.
+
+Given this reasoning, if you do not spin the chambers again, the next chamber you fire will definitely contain a bullet because the empty chamber has already been used. Therefore, spinning or not spinning does not change the outcome.
+
+Thus, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the best course of action, let's analyze the situation step by step:
+
+1. **Understanding the Setup**:
+   - A six-shooter revolver has six chambers.
+   - Five bullets are loaded into the revolver.
+   - The revolver is spun, and a shot is fired without a bullet being discharged.
+   - This means the bullet chamber that was fired is now empty.
+
+2. **Probability Analysis**:
+   - After the first shot, there are 5 bullets left in the revolver.
+   - The revolver has 6 chambers, so the probability of firing a bullet is 5/6 if you do not spin again.
+   - If you spin again, the bullets are randomly distributed among the 6 chambers, so the probability of firing a bullet is also 5/6.
+
+3. **Comparison of Options**:
+   - **Option A**: No, you should not spin again. This would leave the empty chamber in the same position, but it does not change the overall probability of firing a bullet.
+   - **Option B**: The probabilities are random and unknown. This is incorrect because the probabilities can be calculated based on the given information.
+   - **Option C**: It makes no difference if you spin again or not. This is correct because the probability of firing a bullet is the same whether you spin again or not.
+   - **Option D**: Yes, you should spin again. This is incorrect because spinning again does not change the overall probability of firing a bullet.
+
+Based on the analysis, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```"
 Puzzle,"A farmer wants to cross a river and take with him a wolf, a goat and a cabbage. He has a boat with three secure separate compartments. If the wolf and the goat are alone on one shore, the wolf will eat the goat. If the goat and the cabbage are alone on the shore, the goat will eat the cabbage. What is the minimum number of crossings the farmer needs to make to bring the wolf, the goat and the cabbage across the river without anything being eaten?","Place the wolf, goat, and cabbage in separate secure compartments in the boat and row across the river in one crossing without being harmed.",One crossing,"['Five crossings', 'The animals are not able to be transported across the river without being eaten.', 'Seven crossings', 'One crossing']","QUESTION
 A farmer wants to cross a river and take with him a wolf, a goat and a cabbage. He has a boat with three secure separate compartments. If the wolf and the goat are alone on one shore, the wolf will eat the goat. If the goat and the cabbage are alone on the shore, the goat will eat the cabbage. What is the minimum number of crossings the farmer needs to make to bring the wolf, the goat and the cabbage across the river without anything being eaten?
 
@@ -108,7 +205,36 @@ At this point, the farmer has successfully transported the wolf, the goat, and t
   ""Udaharana"": ""If a farmer takes all three items (wolf, goat, cabbage) in one trip using the three compartments, no two items are left alone on either shore to cause conflict."",
   ""Upanaya"": ""In this scenario, the farmer utilizes the boat's three compartments to carry all three items at once, eliminating the risk of the wolf eating the goat or the goat eating the cabbage on either shore."",
   ""Nigamana"": ""Therefore, the farmer can safely transport all three across in a single crossing by leveraging the boat's three compartments.""
-}",The minimum number of crossings the farmer needs to make is one crossing.,"The boat has three secure separate compartments, allowing the farmer to transport the wolf, goat, and cabbage simultaneously, ensuring none are left alone together on either shore.","If a farmer takes all three items (wolf, goat, cabbage) in one trip using the three compartments, no two items are left alone on either shore to cause conflict.","In this scenario, the farmer utilizes the boat's three compartments to carry all three items at once, eliminating the risk of the wolf eating the goat or the goat eating the cabbage on either shore.","Therefore, the farmer can safely transport all three across in a single crossing by leveraging the boat's three compartments."
+}",The minimum number of crossings the farmer needs to make is one crossing.,"The boat has three secure separate compartments, allowing the farmer to transport the wolf, goat, and cabbage simultaneously, ensuring none are left alone together on either shore.","If a farmer takes all three items (wolf, goat, cabbage) in one trip using the three compartments, no two items are left alone on either shore to cause conflict.","In this scenario, the farmer utilizes the boat's three compartments to carry all three items at once, eliminating the risk of the wolf eating the goat or the goat eating the cabbage on either shore.","Therefore, the farmer can safely transport all three across in a single crossing by leveraging the boat's three compartments.",D,A,"To determine the minimum number of crossings the farmer needs to make to bring the wolf, the goat, and the cabbage across the river without anything being eaten, we need to consider the constraints and the available resources.
+
+1. **Hetu (Reason)**: The boat has three secure separate compartments, allowing the farmer to transport the wolf, goat, and cabbage simultaneously, ensuring none are left alone together on either shore.
+2. **Udāharaṇa (Example)**: If a farmer takes all three items (wolf, goat, cabbage) in one trip using the three compartments, no two items are left alone on either shore to cause conflict.
+3. **Upanaya (Application)**: In this scenario, the farmer utilizes the boat's three compartments to carry all three items at once, eliminating the risk of the wolf eating the goat or the goat eating the cabbage on either shore.
+
+Given the constraints:
+- The wolf and the goat cannot be left together without the farmer.
+- The goat and the cabbage cannot be left together without the farmer.
+
+Since the boat has three secure separate compartments, the farmer can indeed take all three items (wolf, goat, cabbage) in one trip. This ensures that no two items are left alone together on either shore to cause conflict.
+
+Therefore, the minimum number of crossings the farmer needs to make is one.
+
+```json
+{ ""answer"": ""D"" }
+```","To solve this problem, we need to carefully plan the crossings to ensure that the wolf, the goat, and the cabbage are never left together without the farmer on the same shore. Here's a step-by-step plan:
+
+1. **First Crossing:** The farmer takes the goat across first and leaves it on the other side.
+2. **Second Crossing:** The farmer goes back alone to the original side.
+3. **Third Crossing:** The farmer takes the wolf across to the side where the goat is. However, the farmer cannot leave the goat and the wolf together, so the farmer takes the goat back across.
+4. **Fourth Crossing:** The farmer leaves the goat on the original side and takes the cabbage across to the side where the wolf is.
+5. **Fifth Crossing:** The farmer goes back alone to the original side.
+6. **Sixth Crossing:** The farmer takes the goat across to the side where the wolf and the cabbage are.
+
+By following these steps, the farmer successfully transports all three items across the river without any of them being eaten.
+
+Therefore, the minimum number of crossings required is six, which is not listed in the options. However, the closest option that makes sense given the constraints is:
+
+{ ""answer"": ""A"" }"
 Puzzle,"Bob has three boxes in front of him - Box A, Box B and Box C. Bob does not know what is in the boxes. Colin knows that Box A will explode when it is opened, Box B contains 5 dollars and Box C is empty. Should Bob open a box? What box should Bob open?",Bob should not open a box because he has a 1/3 chance of killing himself. The 1/3 chance of “winning” $5 is generally not worth that sort of risk!,"No, Bob should not open any box","['Yes, Box C', 'No, Bob should not open any box', 'Yes, Box B', 'Yes, Box A']","QUESTION
 Bob has three boxes in front of him - Box A, Box B and Box C. Bob does not know what is in the boxes. Colin knows that Box A will explode when it is opened, Box B contains 5 dollars and Box C is empty. Should Bob open a box? What box should Bob open?
 
@@ -139,7 +265,29 @@ Therefore, the best advice for Bob, given his lack of information, is to not ope
   ""Udaharana"": ""If someone has a choice between a box with a reward and a box with nothing, they should choose the box with the reward, provided it is safe."",
   ""Upanaya"": ""In this scenario, Box B is the only box with a reward (5 dollars) and is safe to open, unlike Box A which is dangerous."",
   ""Nigamana"": ""Therefore, Bob should open Box B to obtain the 5 dollars without risking an explosion.""
-}",Bob should open Box B.,"Box B contains 5 dollars and is safe to open, as it does not explode upon opening.","If someone has a choice between a box with a reward and a box with nothing, they should choose the box with the reward, provided it is safe.","In this scenario, Box B is the only box with a reward (5 dollars) and is safe to open, unlike Box A which is dangerous.","Therefore, Bob should open Box B to obtain the 5 dollars without risking an explosion."
+}",Bob should open Box B.,"Box B contains 5 dollars and is safe to open, as it does not explode upon opening.","If someone has a choice between a box with a reward and a box with nothing, they should choose the box with the reward, provided it is safe.","In this scenario, Box B is the only box with a reward (5 dollars) and is safe to open, unlike Box A which is dangerous.","Therefore, Bob should open Box B to obtain the 5 dollars without risking an explosion.",C,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Box B contains 5 dollars and is safe to open, as it does not explode upon opening.
+2. **Udāharaṇa (Example)**: If someone has a choice between a box with a reward and a box with nothing, they should choose the box with the reward, provided it is safe.
+3. **Upanaya (Application)**: In this scenario, Box B is the only box with a reward (5 dollars) and is safe to open, unlike Box A which is dangerous.
+
+Given this reasoning, the correct option is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the best option, let's analyze the situation step by step:
+
+1. **Box A**: This box will explode when opened. Opening it would be dangerous and should be avoided.
+2. **Box B**: This box contains $5. Opening it would be safe and beneficial.
+3. **Box C**: This box is empty. Opening it would be safe but not beneficial.
+
+Given this information, the best option for Bob is to open Box B, as it contains money and will not cause any harm.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```"
 Counting,"A robot has 8 arms. There are 5 objects on a table: a knife, a fork, a spoon, a teddy bear and a doll. The robot picks up each object with an arm. He then shakes hands with himself. How many arms does he have free?","A hand is used for each of the five objects and then two hands are used to shake hands with himself. This means that seven hands are being used, leaving one arm/hand free.",1,"['Other', '1', '2', '0']","QUESTION
 A robot has 8 arms. There are 5 objects on a table: a knife, a fork, a spoon, a teddy bear and a doll. The robot picks up each object with an arm. He then shakes hands with himself. How many arms does he have free?
 
@@ -168,7 +316,33 @@ This totals 7 arms in use. Therefore, the robot has 8 - 7 = 1 arm free.
   ""Udaharana"": ""If a person uses 3 hands to pick up items and 2 hands to shake another hand, total used is 5, leaving 3 free from 8."",
   ""Upanaya"": ""In this case, 5 arms are used for objects and 2 for shaking hands, so 7 used, 1 left."",
   ""Nigamana"": ""Therefore, the robot has 1 free arm.""
-}",The robot has 1 arm free.,"The robot uses 5 arms to pick up objects and 2 arms to shake hands, totaling 7 arms used.","If a person uses 3 hands to pick up items and 2 hands to shake another hand, total used is 5, leaving 3 free from 8.","In this case, 5 arms are used for objects and 2 for shaking hands, so 7 used, 1 left.","Therefore, the robot has 1 free arm."
+}",The robot has 1 arm free.,"The robot uses 5 arms to pick up objects and 2 arms to shake hands, totaling 7 arms used.","If a person uses 3 hands to pick up items and 2 hands to shake another hand, total used is 5, leaving 3 free from 8.","In this case, 5 arms are used for objects and 2 for shaking hands, so 7 used, 1 left.","Therefore, the robot has 1 free arm.",B,B,"To determine the correct answer, let's follow the Panchavakya logical structure step by step:
+
+1. **Hetu (Reason)**: The robot uses 5 arms to pick up objects and 2 arms to shake hands, totaling 7 arms used.
+2. **Udāharaṇa (Example)**: If a person uses 3 hands to pick up items and 2 hands to shake another hand, total used is 5, leaving 3 free from 8.
+3. **Upanaya (Application)**: In this case, 5 arms are used for objects and 2 for shaking hands, so 7 used, 1 left.
+
+Given that the robot has 8 arms and uses 7 of them (5 for objects and 2 for shaking hands), the number of free arms is:
+
+8 (total arms) - 7 (used arms) = 1 (free arm)
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""B"" }
+```","To determine how many arms the robot has free, let's analyze the situation step by step:
+
+1. The robot has 8 arms initially.
+2. There are 5 objects on the table: a knife, a fork, a spoon, a teddy bear, and a doll.
+3. The robot picks up each of the 5 objects with an arm, so 5 arms are now holding objects.
+4. The robot then shakes hands with itself, which means it uses 2 arms for this action.
+
+Now, let's calculate the number of free arms:
+- 8 (total arms) - 5 (arms holding objects) - 2 (arms shaking hands) = 1 arm free.
+
+Therefore, the robot has 1 arm free.
+
+{ ""answer"": ""B"" }"
 Spatial,"Alan, Bob, Colin, Dave and Emily are standing in a circle. Alan is on Bob's immediate left. Bob is on Colin's immediate left. Colin is on Dave's immediate left. Dave is on Emily's immediate left. Who is on Alan's immediate right?",Bob is on Alan's immediate right because it is stated that Alan is on Bob's immediate left.,'Bob',"[""'Bob'"", ""'Dave'"", 'No one', ""'Emily'""]","QUESTION
 Alan, Bob, Colin, Dave and Emily are standing in a circle. Alan is on Bob's immediate left. Bob is on Colin's immediate left. Colin is on Dave's immediate left. Dave is on Emily's immediate left. Who is on Alan's immediate right?
 
@@ -198,7 +372,44 @@ Given the arrangement, the person next to Alan (on his right in the circular arr
   ""Udaharana"": ""In a circle of five people arranged as Alan, Bob, Colin, Dave, Emily, each subsequent person is to the immediate right of the previous one."",
   ""Upanaya"": ""Applying this arrangement, Alan's immediate right neighbor is Bob, as the sequence continues from Alan to Bob."",
   ""Nigamana"": ""Therefore, the person on Alan's immediate right is Bob.""
-}",The person on Alan's immediate right is Bob.,"Given the positions derived from the statements, each person is followed by the next in the sequence: Alan → Bob → Colin → Dave → Emily → Alan.","In a circle of five people arranged as Alan, Bob, Colin, Dave, Emily, each subsequent person is to the immediate right of the previous one.","Applying this arrangement, Alan's immediate right neighbor is Bob, as the sequence continues from Alan to Bob.","Therefore, the person on Alan's immediate right is Bob."
+}",The person on Alan's immediate right is Bob.,"Given the positions derived from the statements, each person is followed by the next in the sequence: Alan → Bob → Colin → Dave → Emily → Alan.","In a circle of five people arranged as Alan, Bob, Colin, Dave, Emily, each subsequent person is to the immediate right of the previous one.","Applying this arrangement, Alan's immediate right neighbor is Bob, as the sequence continues from Alan to Bob.","Therefore, the person on Alan's immediate right is Bob.",A,A,"To determine who is on Alan's immediate right, we need to follow the sequence given in the problem:
+
+1. Alan is on Bob's immediate left.
+2. Bob is on Colin's immediate left.
+3. Colin is on Dave's immediate left.
+4. Dave is on Emily's immediate left.
+
+From these statements, we can deduce the order in the circle:
+- Alan → Bob → Colin → Dave → Emily → Alan
+
+Given this order, Alan's immediate right neighbor is Bob.
+
+Therefore, the correct answer is:
+```json
+{ ""answer"": ""A"" }
+```","To determine who is on Alan's immediate right, let's analyze the given information step by step:
+
+1. Alan is on Bob's immediate left.
+2. Bob is on Colin's immediate left.
+3. Colin is on Dave's immediate left.
+4. Dave is on Emily's immediate left.
+
+Given these conditions, let's arrange them in a circle:
+
+- Starting with Alan, Bob must be to Alan's right.
+- Since Bob is on Colin's immediate left, Colin must be to Bob's right.
+- Since Colin is on Dave's immediate left, Dave must be to Colin's right.
+- Since Dave is on Emily's immediate left, Emily must be to Dave's right.
+
+So the order in the circle is:
+Alan → Bob → Colin → Dave → Emily → Alan
+
+From this arrangement, we can see that Bob is on Alan's immediate right.
+
+Therefore, the correct answer is:
+```json
+{ ""answer"": ""A"" }
+```"
 Linguistic,Write me a sentence without any words that appear in The Bible,Cryptographic algorithms safeguard nuclear warheads.,Cryptographic algorithms safeguard nuclear warheads.,"[""Quixotic zephyrs vexed the jabberwocky's kumquat garden."", 'Our computer, engineered in a contemporary lab, processes data flawlessly and efficiently.', 'Cryptographic algorithms safeguard nuclear warheads.', 'The computer swiftly executed complex algorithms.']","QUESTION
 Write me a sentence without any words that appear in The Bible
 
@@ -235,7 +446,62 @@ Therefore, the answer, focusing on the intent of using modern and unique terms n
   ""Udaharana"": ""Modern terms like 'cryptographic' and 'nuclear' are not found in biblical texts, unlike common words like 'computer' or 'executed' in other options."",
   ""Upanaya"": ""In Option C, all words are either modern inventions or technical terms, which are absent in the Bible, unlike other options that include words like 'vexed' or 'our' that appear in biblical texts."",
   ""Nigamana"": ""Therefore, Option C is the only sentence that contains no words from the Bible.""
-}",Option C is the correct sentence without any words from the Bible.,The words in Option C ('Cryptographic algorithms safeguard nuclear warheads') are modern terms not present in the Bible.,"Modern terms like 'cryptographic' and 'nuclear' are not found in biblical texts, unlike common words like 'computer' or 'executed' in other options.","In Option C, all words are either modern inventions or technical terms, which are absent in the Bible, unlike other options that include words like 'vexed' or 'our' that appear in biblical texts.","Therefore, Option C is the only sentence that contains no words from the Bible."
+}",Option C is the correct sentence without any words from the Bible.,The words in Option C ('Cryptographic algorithms safeguard nuclear warheads') are modern terms not present in the Bible.,"Modern terms like 'cryptographic' and 'nuclear' are not found in biblical texts, unlike common words like 'computer' or 'executed' in other options.","In Option C, all words are either modern inventions or technical terms, which are absent in the Bible, unlike other options that include words like 'vexed' or 'our' that appear in biblical texts.","Therefore, Option C is the only sentence that contains no words from the Bible.",C,A,"To determine the correct answer, we need to analyze each option based on the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The words in the sentence should not appear in the Bible.
+2. **Udāharaṇa (Example)**: Modern terms and technical jargon are not found in biblical texts.
+3. **Upanaya (Application)**: The sentence should contain words that are not present in the Bible.
+
+Let's evaluate each option:
+
+- **Option A**: ""Quixotic zephyrs vexed the jabberwocky's kumquat garden.""
+  - Words like ""quixotic,"" ""zephyrs,"" ""jabberwocky,"" and ""kumquat"" are not common biblical terms.
+
+- **Option B**: ""Our computer, engineered in a contemporary lab, processes data flawlessly and efficiently.""
+  - Words like ""computer,"" ""engineered,"" ""contemporary,"" ""lab,"" ""processes,"" ""data,"" ""flawlessly,"" and ""efficiently"" are modern terms not found in the Bible.
+
+- **Option C**: ""Cryptographic algorithms safeguard nuclear warheads.""
+  - Words like ""cryptographic,"" ""algorithms,"" ""safeguard,"" and ""nuclear"" are modern technical terms not found in the Bible.
+
+- **Option D**: ""The computer swiftly executed complex algorithms.""
+  - Words like ""computer,"" ""swiftly,"" ""executed,"" and ""complex"" are modern terms, but ""the"" and ""algorithms"" are neutral.
+
+Given the Panchavakya structure, Option C stands out because all its words are modern technical terms that are not present in the Bible. The other options contain words that could potentially appear in biblical texts or are more neutral.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the best answer, we need to analyze each option to see if any words appear in the Bible. The Bible contains a vast array of words, so we need to be cautious.
+
+Let's analyze each option:
+
+- **Option A:** ""Quixotic zephyrs vexed the jabberwocky's kumquat garden.""
+  - ""Quixotic,"" ""zephyrs,"" ""vexed,"" ""jabberwocky,"" ""kumquat,"" and ""garden"" are not common biblical words.
+
+- **Option B:** ""Our computer, engineered in a contemporary lab, processes data flawlessly and efficiently.""
+  - ""Computer,"" ""engineered,"" ""contemporary,"" ""lab,"" ""processes,"" ""data,"" ""flawlessly,"" and ""efficiently"" are not biblical words.
+
+- **Option C:** ""Cryptographic algorithms safeguard nuclear warheads.""
+  - ""Cryptographic,"" ""algorithms,"" ""safeguard,"" and ""nuclear"" are not biblical words.
+
+- **Option D:** ""The computer swiftly executed complex algorithms.""
+  - ""Computer,"" ""swiftly,"" ""executed,"" ""complex,"" and ""algorithms"" are not biblical words.
+
+After analyzing each option, it appears that none of the words in Option A, B, C, or D are likely to appear in the Bible. However, to be thorough, let's consider the possibility of any biblical references in a more nuanced way:
+
+- **Option A:** Contains made-up words like ""jabberwocky"" and ""kumquat,"" which are not in the Bible.
+- **Option B:** Contains modern technological terms that are not in the Bible.
+- **Option C:** Contains scientific and military terms that are not in the Bible.
+- **Option D:** Contains modern technological terms that are not in the Bible.
+
+Given this analysis, **Option A** stands out as the most likely to not contain any words from the Bible, as it includes made-up and uncommon words.
+
+Therefore, the best answer is:
+
+```json
+{ ""answer"": ""A"" }
+```"
 Popular science,"Which weighs more, a pound of water, two pounds of bricks, a pound of feathers, or three pounds of air.",Three pounds of air.,Three pounds of air.,"['A pound of feathers.', 'Three pounds of air.', 'They all weigh the same.', 'Two pounds of brick.']","QUESTION
 Which weighs more, a pound of water, two pounds of bricks, a pound of feathers, or three pounds of air.
 
@@ -274,7 +540,41 @@ Considering the logic above, the correct answer is the option that weighs the mo
   ""Udaharana"": ""For example, two kilograms of sand weigh more than one kilogram of sand because the quantity is greater."",
   ""Upanaya"": ""In this case, three pounds of air (3 lb) exceed two pounds of bricks (2 lb) and one pound of water or feathers (1 lb each) by quantity alone."",
   ""Nigamana"": ""Therefore, three pounds of air (Option B) is the correct answer as it weighs the most.""
-}",Three pounds of air weigh more than the other options.,"The weight of an object is determined by the quantity specified, regardless of the material.","For example, two kilograms of sand weigh more than one kilogram of sand because the quantity is greater.","In this case, three pounds of air (3 lb) exceed two pounds of bricks (2 lb) and one pound of water or feathers (1 lb each) by quantity alone.","Therefore, three pounds of air (Option B) is the correct answer as it weighs the most."
+}",Three pounds of air weigh more than the other options.,"The weight of an object is determined by the quantity specified, regardless of the material.","For example, two kilograms of sand weigh more than one kilogram of sand because the quantity is greater.","In this case, three pounds of air (3 lb) exceed two pounds of bricks (2 lb) and one pound of water or feathers (1 lb each) by quantity alone.","Therefore, three pounds of air (Option B) is the correct answer as it weighs the most.",B,B,"To determine the correct answer, we need to apply the Panchavakya logical structure to the given question.
+
+1. **Hetu (Reason)**: The weight of an object is determined by the quantity specified, regardless of the material.
+2. **Udāharaṇa (Example)**: For example, two kilograms of sand weigh more than one kilogram of sand because the quantity is greater.
+3. **Upanaya (Application)**: In this case, three pounds of air (3 lb) exceed two pounds of bricks (2 lb) and one pound of water or feathers (1 lb each) by quantity alone.
+
+Given the options:
+- Option A: A pound of feathers.
+- Option B: Three pounds of air.
+- Option C: They all weigh the same.
+- Option D: Two pounds of brick.
+
+By applying the Panchavakya structure:
+- Three pounds of air weighs more than one pound of feathers, one pound of water, and two pounds of bricks because it has the highest quantity.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""B"" }
+```","To determine which weighs more, we need to consider the weight of each option:
+
+1. **A pound of feathers**: This weighs exactly one pound.
+2. **Three pounds of air**: Air is much less dense than any solid or liquid, so three pounds of air would occupy a very large volume compared to the other options. However, the weight is specified as three pounds.
+3. **Two pounds of bricks**: This weighs exactly two pounds.
+4. **A pound of water**: This weighs exactly one pound.
+
+Given these weights:
+- A pound of feathers = 1 pound
+- Three pounds of air = 3 pounds
+- Two pounds of bricks = 2 pounds
+- A pound of water = 1 pound
+
+The heaviest option is clearly three pounds of air.
+
+{ ""answer"": ""B"" }"
 Relational,I get out on the top floor (third floor) at street level. How many stories is the building above the ground?,"One story above the ground, as exiting at street level requires a single story building.",One story above the ground,"['Two stories above the ground', 'Zero stories above the ground', 'Three stories above the ground', 'One story above the ground']","QUESTION
 I get out on the top floor (third floor) at street level. How many stories is the building above the ground?
 
@@ -307,7 +607,26 @@ Therefore, considering the conventional interpretation of ""above the ground"" a
   ""Udaharana"": ""In a building labeled as Ground (1st), 2nd, and 3rd floors, the top floor (3rd) implies two stories above the ground."",
   ""Upanaya"": ""Here, exiting on the third floor (top) confirms two stories (second and third) exist above the ground."",
   ""Nigamana"": ""Therefore, the building has two stories above the ground, making Option A correct.""
-}",The building has two stories above the ground.,"If the third floor is the top floor at street level, the two floors above the ground are the second and third floors.","In a building labeled as Ground (1st), 2nd, and 3rd floors, the top floor (3rd) implies two stories above the ground.","Here, exiting on the third floor (top) confirms two stories (second and third) exist above the ground.","Therefore, the building has two stories above the ground, making Option A correct."
+}",The building has two stories above the ground.,"If the third floor is the top floor at street level, the two floors above the ground are the second and third floors.","In a building labeled as Ground (1st), 2nd, and 3rd floors, the top floor (3rd) implies two stories above the ground.","Here, exiting on the third floor (top) confirms two stories (second and third) exist above the ground.","Therefore, the building has two stories above the ground, making Option A correct.",A,B,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: If the third floor is the top floor at street level, the two floors above the ground are the second and third floors.
+2. **Udāharaṇa (Example)**: In a building labeled as Ground (1st), 2nd, and 3rd floors, the top floor (3rd) implies two stories above the ground.
+3. **Upanaya (Application)**: Here, exiting on the third floor (top) confirms two stories (second and third) exist above the ground.
+
+Given this reasoning, the correct answer is:
+
+```json
+{ ""answer"": ""A"" }
+```","To determine the number of stories above the ground, we need to consider the information given:
+
+- You get out on the ""top floor"" (third floor).
+- The ""top floor"" is at ""street level.""
+
+If the third floor is at street level, it means there are no floors above the ground level. Therefore, the building has zero stories above the ground.
+
+So, the correct answer is:
+
+{ ""answer"": ""B"" }"
 Spatial,"In a toy box, there's a red ball, a blue truck, and a green dinosaur. The red ball is not next to the blue truck, and the green dinosaur is next to the red ball. Which toy is in the middle?",The green dinosaur.,'The green dinosaur',"[""'The red ball'"", ""'The blue truck'"", 'None of them are positioned in the middle.', ""'The green dinosaur'""]","QUESTION
 In a toy box, there's a red ball, a blue truck, and a green dinosaur. The red ball is not next to the blue truck, and the green dinosaur is next to the red ball. Which toy is in the middle?
 
@@ -335,7 +654,51 @@ Therefore, the toy in the middle is the green dinosaur.
   ""Udaharana"": ""In a line of three positions, if the red ball is at position 1 and the green dinosaur at position 2, the blue truck must be at position 3 (since red and blue cannot be adjacent). Similarly, if the blue truck is at position 1 and the green dinosaur at position 2, the red ball must be at position 3."",
   ""Upanaya"": ""In both valid arrangements (Red-Green-Blue or Blue-Green-Red), the green dinosaur occupies the middle position, satisfying all constraints."",
   ""Nigamana"": ""Therefore, the green dinosaur must be in the middle to satisfy both conditions.""
-}",The green dinosaur is in the middle.,"The red ball cannot be adjacent to the blue truck, and the green dinosaur must be adjacent to the red ball.","In a line of three positions, if the red ball is at position 1 and the green dinosaur at position 2, the blue truck must be at position 3 (since red and blue cannot be adjacent). Similarly, if the blue truck is at position 1 and the green dinosaur at position 2, the red ball must be at position 3.","In both valid arrangements (Red-Green-Blue or Blue-Green-Red), the green dinosaur occupies the middle position, satisfying all constraints.","Therefore, the green dinosaur must be in the middle to satisfy both conditions."
+}",The green dinosaur is in the middle.,"The red ball cannot be adjacent to the blue truck, and the green dinosaur must be adjacent to the red ball.","In a line of three positions, if the red ball is at position 1 and the green dinosaur at position 2, the blue truck must be at position 3 (since red and blue cannot be adjacent). Similarly, if the blue truck is at position 1 and the green dinosaur at position 2, the red ball must be at position 3.","In both valid arrangements (Red-Green-Blue or Blue-Green-Red), the green dinosaur occupies the middle position, satisfying all constraints.","Therefore, the green dinosaur must be in the middle to satisfy both conditions.",D,A,"To determine the correct answer, let's analyze the given conditions step by step:
+
+1. **Hetu (Reason)**:
+   - The red ball is not next to the blue truck.
+   - The green dinosaur is next to the red ball.
+
+2. **Udāharaṇa (Example)**:
+   - If the red ball is at position 1 and the green dinosaur at position 2, the blue truck must be at position 3 (since red and blue cannot be adjacent).
+   - If the blue truck is at position 1 and the green dinosaur at position 2, the red ball must be at position 3.
+
+3. **Upanaya (Application)**:
+   - In both valid arrangements (Red-Green-Blue or Blue-Green-Red), the green dinosaur occupies the middle position, satisfying all constraints.
+
+Given these conditions, let's evaluate the options:
+
+- **Option A: The red ball** - The red ball cannot be in the middle because it cannot be adjacent to the blue truck.
+- **Option B: The blue truck** - The blue truck cannot be in the middle because it cannot be adjacent to the red ball.
+- **Option C: None of them are positioned in the middle** - This is incorrect because the green dinosaur is in the middle.
+- **Option D: The green dinosaur** - The green dinosaur is in the middle in both valid arrangements.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""D"" }
+```","To determine which toy is in the middle, let's analyze the given conditions step by step:
+
+1. The red ball is not next to the blue truck.
+2. The green dinosaur is next to the red ball.
+
+Given these conditions, let's consider the possible arrangements:
+
+- If the red ball is not next to the blue truck, the possible arrangements are:
+  - Red, Green, Blue
+  - Blue, Red, Green
+  - Green, Red, Blue
+
+- The green dinosaur is next to the red ball, so the only valid arrangement that satisfies both conditions is:
+  - Green, Red, Blue
+
+In this arrangement, the red ball is in the middle.
+
+Therefore, the correct answer is:
+```json
+{ ""answer"": ""A"" }
+```"
 Spatial,"Four children - Alex, Bella, Charlie, and Dana - are sitting around a picnic table. Alex is facing Bella. Charlie is sitting to the right of Bella. Who is sitting to the left of Alex?",Dana,'Dana',"[""'Dana'"", ""'Bella'"", 'No one', ""'Charlie'""]","QUESTION
 Four children - Alex, Bella, Charlie, and Dana - are sitting around a picnic table. Alex is facing Bella. Charlie is sitting to the right of Bella. Who is sitting to the left of Alex?
 
@@ -363,7 +726,25 @@ Therefore, the person sitting to the left of Alex is Dana.
   ""Udaharana"": ""Imagine four people seated at the four cardinal directions (North, East, South, West) of a table. If Alex is North and faces Bella (South), Charlie to Bella’s right (East) leaves Dana at West."",
   ""Upanaya"": ""In this case, Alex’s left corresponds to the West position, which must be occupied by Dana since all other seats are occupied by Alex, Bella, and Charlie."",
   ""Nigamana"": ""Therefore, Dana is the one sitting to the left of Alex.""
-}",Dana is sitting to the left of Alex.,"If Alex is facing Bella, and Charlie is to the right of Bella, the seating arrangement places Dana to Alex's left.","Imagine four people seated at the four cardinal directions (North, East, South, West) of a table. If Alex is North and faces Bella (South), Charlie to Bella’s right (East) leaves Dana at West.","In this case, Alex’s left corresponds to the West position, which must be occupied by Dana since all other seats are occupied by Alex, Bella, and Charlie.","Therefore, Dana is the one sitting to the left of Alex."
+}",Dana is sitting to the left of Alex.,"If Alex is facing Bella, and Charlie is to the right of Bella, the seating arrangement places Dana to Alex's left.","Imagine four people seated at the four cardinal directions (North, East, South, West) of a table. If Alex is North and faces Bella (South), Charlie to Bella’s right (East) leaves Dana at West.","In this case, Alex’s left corresponds to the West position, which must be occupied by Dana since all other seats are occupied by Alex, Bella, and Charlie.","Therefore, Dana is the one sitting to the left of Alex.",A,D,"```json
+{
+  ""answer"": ""A""
+}
+```","To determine who is sitting to the left of Alex, let's analyze the given information step by step:
+
+1. Alex is facing Bella.
+2. Charlie is sitting to the right of Bella.
+
+Given these conditions, we can deduce the seating arrangement:
+
+- Since Alex is facing Bella, they are directly opposite each other.
+- Charlie is to the right of Bella, which means Charlie is to the left of Alex.
+
+Therefore, the person sitting to the left of Alex is Charlie.
+
+```json
+{ ""answer"": ""D"" }
+```"
 Spatial,"A man leaves home at 0m elevation, makes a left turn and walks straight for a km and reaches 300m elevation, makes another left turn and walks straight for a km and reaches 500m elevation, makes another left turn and walks straight for a km and reaches 900m elevation, and turns left again and walks straight for a km. How far away is he from his starting point and what is his final elevation?",He is back at his starting point and at 0m elevation.,"0m from starting point, 0m elevation.","['We cannot accurately determine his final position and elevation.', '0m from starting point, 1700m elevation.', '2000m from starting point, 900m elevation.', '0m from starting point, 0m elevation.']","QUESTION
 A man leaves home at 0m elevation, makes a left turn and walks straight for a km and reaches 300m elevation, makes another left turn and walks straight for a km and reaches 500m elevation, makes another left turn and walks straight for a km and reaches 900m elevation, and turns left again and walks straight for a km. How far away is he from his starting point and what is his final elevation?
 
@@ -400,7 +781,46 @@ Therefore, the correct answer is:
   ""Udaharana"": ""If someone walks north 1 km, turns left (west) 1 km, turns left (south) 1 km, turns left (east) 1 km, they form a square and return to the start. Elevation gains following a doubling pattern (e.g., 300, 200, 400, 800) sum to 1700m."",
   ""Upanaya"": ""In this case, the man’s four left turns create a square path, returning him to the origin. The elevation gains (300, 200, 400, 800m) follow the same doubling pattern as the example, totaling 1700m."",
   ""Nigamana"": ""Therefore, the man ends at his starting point with 1700m elevation.""
-}",The man is 0 meters from his starting point and has a final elevation of 1700 meters.,"Each left turn changes his direction by 90 degrees, forming a square path that returns him to the origin. The elevation gains follow a cumulative pattern (300+200+400+800 = 1700m).","If someone walks north 1 km, turns left (west) 1 km, turns left (south) 1 km, turns left (east) 1 km, they form a square and return to the start. Elevation gains following a doubling pattern (e.g., 300, 200, 400, 800) sum to 1700m.","In this case, the man’s four left turns create a square path, returning him to the origin. The elevation gains (300, 200, 400, 800m) follow the same doubling pattern as the example, totaling 1700m.","Therefore, the man ends at his starting point with 1700m elevation."
+}",The man is 0 meters from his starting point and has a final elevation of 1700 meters.,"Each left turn changes his direction by 90 degrees, forming a square path that returns him to the origin. The elevation gains follow a cumulative pattern (300+200+400+800 = 1700m).","If someone walks north 1 km, turns left (west) 1 km, turns left (south) 1 km, turns left (east) 1 km, they form a square and return to the start. Elevation gains following a doubling pattern (e.g., 300, 200, 400, 800) sum to 1700m.","In this case, the man’s four left turns create a square path, returning him to the origin. The elevation gains (300, 200, 400, 800m) follow the same doubling pattern as the example, totaling 1700m.","Therefore, the man ends at his starting point with 1700m elevation.",B,A,"To determine the correct answer, let's break down the problem step by step using the Panchavakya logical structure:
+
+1. **Hetu (Reason)**:
+   - Each left turn changes his direction by 90 degrees, forming a square path that returns him to the origin.
+   - The elevation gains follow a cumulative pattern (300 + 200 + 400 + 800 = 1700m).
+
+2. **Udāharaṇa (Example)**:
+   - If someone walks north 1 km, turns left (west) 1 km, turns left (south) 1 km, turns left (east) 1 km, they form a square and return to the start.
+   - Elevation gains following a doubling pattern (e.g., 300, 200, 400, 800) sum to 1700m.
+
+3. **Upanaya (Application)**:
+   - In this case, the man’s four left turns create a square path, returning him to the origin.
+   - The elevation gains (300, 200, 400, 800m) follow the same doubling pattern as the example, totaling 1700m.
+
+Given this reasoning, the man returns to his starting point after completing the square path, and his final elevation is the sum of the elevation gains.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""B"" }
+```","To determine the man's final position and elevation, let's analyze his movements step by step:
+
+1. **Starting Point**: 0m elevation.
+2. **First Leg**: Walks 1 km to the left and reaches 300m elevation.
+3. **Second Leg**: Makes a left turn and walks 1 km to reach 500m elevation.
+4. **Third Leg**: Makes another left turn and walks 1 km to reach 900m elevation.
+5. **Fourth Leg**: Makes another left turn and walks 1 km.
+
+Given that each leg is 1 km and he makes a left turn each time, his path forms a square pattern. The elevation changes indicate that he is moving in a straight line up a slope, but the horizontal distance covered in each leg is the same.
+
+Since he starts at 0m elevation and ends at 900m elevation after the third leg, the fourth leg will bring him back to the same horizontal line as his starting point but at a different elevation.
+
+The total horizontal distance covered is 1 km to the left, 1 km to the left again, 1 km to the left again, and 1 km to the left again, which sums up to 4 km to the left. However, since he is moving in a square pattern, the net horizontal displacement is zero because he ends up directly below his starting point.
+
+Therefore, the man is back at his starting point horizontally but at 900m elevation.
+
+So, the correct answer is:
+```json
+{ ""answer"": ""A"" }
+```"
 Puzzle,"A group of four people needs to cross a bridge at night. The bridge is very old and rickety. They have only one torch and because it's night-time, the torch is necessary to cross the bridge. Each person walks at a different speed: - A takes 1 minute to cross, - B takes 2 minutes, - C takes 5 minutes, and - D takes 10 minutes. What is the fastest time they can all get across the bridge?","10 minutes, the speed of the slowest person as they cross the bridge together.",10 minutes,"['There is not enough information to determine the fastest time.', '10 minutes', '14 minutes', '17 minutes']","QUESTION
 A group of four people needs to cross a bridge at night. The bridge is very old and rickety. They have only one torch and because it's night-time, the torch is necessary to cross the bridge. Each person walks at a different speed: - A takes 1 minute to cross, - B takes 2 minutes, - C takes 5 minutes, and - D takes 10 minutes. What is the fastest time they can all get across the bridge?
 
@@ -431,7 +851,57 @@ Therefore, the fastest time they can all get across the bridge is 17 minutes.
   ""Udaharana"": ""In similar problems, sending the two fastest first, then using the fastest to return the torch, allows the two slowest to cross together, minimizing total time."",
   ""Upanaya"": ""Here, A (1 min) and B (2 min) cross first (2 min), A returns (1 min). C (5 min) and D (10 min) cross together (10 min), B returns (2 min). Finally, A and B cross again (2 min). Total: 2+1+10+2+2=17 minutes."",
   ""Nigamana"": ""Therefore, the fastest possible time for all four to cross is 17 minutes (Option D).""
-}",The fastest time they can all get across the bridge is 17 minutes.,The optimal strategy involves pairing the fastest individuals to minimize total time by reducing the number of slow crossings.,"In similar problems, sending the two fastest first, then using the fastest to return the torch, allows the two slowest to cross together, minimizing total time.","Here, A (1 min) and B (2 min) cross first (2 min), A returns (1 min). C (5 min) and D (10 min) cross together (10 min), B returns (2 min). Finally, A and B cross again (2 min). Total: 2+1+10+2+2=17 minutes.","Therefore, the fastest possible time for all four to cross is 17 minutes (Option D)."
+}",The fastest time they can all get across the bridge is 17 minutes.,The optimal strategy involves pairing the fastest individuals to minimize total time by reducing the number of slow crossings.,"In similar problems, sending the two fastest first, then using the fastest to return the torch, allows the two slowest to cross together, minimizing total time.","Here, A (1 min) and B (2 min) cross first (2 min), A returns (1 min). C (5 min) and D (10 min) cross together (10 min), B returns (2 min). Finally, A and B cross again (2 min). Total: 2+1+10+2+2=17 minutes.","Therefore, the fastest possible time for all four to cross is 17 minutes (Option D).",D,D,"To determine the fastest time for all four people to cross the bridge, we need to apply the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The optimal strategy involves pairing the fastest individuals to minimize total time by reducing the number of slow crossings.
+2. **Udāharaṇa (Example)**: In similar problems, sending the two fastest first, then using the fastest to return the torch, allows the two slowest to cross together, minimizing total time.
+3. **Upanaya (Application)**: Here, A (1 min) and B (2 min) cross first (2 min), A returns (1 min). C (5 min) and D (10 min) cross together (10 min), B returns (2 min). Finally, A and B cross again (2 min). Total: 2+1+10+2+2=17 minutes.
+
+Let's break down the steps:
+
+1. A and B cross first (2 minutes).
+2. A returns with the torch (1 minute).
+3. C and D cross together (10 minutes).
+4. B returns with the torch (2 minutes).
+5. A and B cross again (2 minutes).
+
+Adding these times together: 2 + 1 + 10 + 2 + 2 = 17 minutes.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""D"" }
+```","To determine the fastest time for all four people to cross the bridge, we need to consider the constraints and optimize the crossing times.
+
+1. **First Crossing**: The fastest two people (A and B) cross the bridge together. This takes 2 minutes.
+   - Time elapsed: 2 minutes
+   - People on the other side: A, B
+   - People on the original side: C, D
+
+2. **Return Trip**: A returns with the torch. This takes 1 minute.
+   - Time elapsed: 3 minutes
+   - People on the other side: B
+   - People on the original side: A, C, D
+
+3. **Second Crossing**: The two slowest people (C and D) cross the bridge together. This takes 10 minutes.
+   - Time elapsed: 13 minutes
+   - People on the other side: B, C, D
+   - People on the original side: A
+
+4. **Return Trip**: B returns with the torch. This takes 2 minutes.
+   - Time elapsed: 15 minutes
+   - People on the other side: C, D
+   - People on the original side: A, B
+
+5. **Final Crossing**: A and B cross the bridge together again. This takes 2 minutes.
+   - Time elapsed: 17 minutes
+   - People on the other side: A, B, C, D
+
+Therefore, the fastest time for all four people to cross the bridge is 17 minutes.
+
+```json
+{ ""answer"": ""D"" }
+```"
 Puzzle,"You're in a room with two doors that lead out. One door leads to certain death, and the other door leads to freedom. There are two guardians, one by each door. One taller guardian always tells the truth and guards the death door, the other always lies. What is the minimum number of questions needed to ask the guards to get to safety?",Zero questions. The door to freedom is behind the shorter guardian.,Zero questions,"['The door leading to freedom can never be determined.', 'Zero questions', 'One question', 'Two questions']","QUESTION
 You're in a room with two doors that lead out. One door leads to certain death, and the other door leads to freedom. There are two guardians, one by each door. One taller guardian always tells the truth and guards the death door, the other always lies. What is the minimum number of questions needed to ask the guards to get to safety?
 
@@ -458,7 +928,41 @@ Therefore, you only need to ask one question to figure out which door leads to f
   ""Udaharana"": ""Ask either guard, 'If I asked the other guard which door leads to freedom, what would he say?' The answer will always point to the death door."",
   ""Upanaya"": ""This question works because the truth-teller will truthfully report the liar’s false answer, and the liar will lie about the truth-teller’s honest answer, both leading to the death door."",
   ""Nigamana"": ""Therefore, one question suffices to identify the correct door.""
-}",The minimum number of questions needed is one (Option C).,A single well-constructed question can determine the correct door regardless of which guard is asked.,"Ask either guard, 'If I asked the other guard which door leads to freedom, what would he say?' The answer will always point to the death door.","This question works because the truth-teller will truthfully report the liar’s false answer, and the liar will lie about the truth-teller’s honest answer, both leading to the death door.","Therefore, one question suffices to identify the correct door."
+}",The minimum number of questions needed is one (Option C).,A single well-constructed question can determine the correct door regardless of which guard is asked.,"Ask either guard, 'If I asked the other guard which door leads to freedom, what would he say?' The answer will always point to the death door.","This question works because the truth-teller will truthfully report the liar’s false answer, and the liar will lie about the truth-teller’s honest answer, both leading to the death door.","Therefore, one question suffices to identify the correct door.",C,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: A single well-constructed question can determine the correct door regardless of which guard is asked.
+2. **Udāharaṇa (Example)**: Ask either guard, ""If I asked the other guard which door leads to freedom, what would he say?"" The answer will always point to the death door.
+3. **Upanaya (Application)**: This question works because the truth-teller will truthfully report the liar’s false answer, and the liar will lie about the truth-teller’s honest answer, both leading to the death door.
+
+Given this reasoning, the correct door can be determined with just one question. Therefore, the minimum number of questions needed to ask the guards to get to safety is one.
+
+So, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the minimum number of questions needed to ask the guards to get to safety, let's analyze the situation step by step:
+
+1. **Understand the guards' behavior**:
+   - One guard always tells the truth and guards the door to certain death.
+   - The other guard always lies and guards the door to freedom.
+
+2. **Formulate a strategy**:
+   - Ask either guard a question that will give you the same answer regardless of which guard you ask.
+   - A good question to ask is: ""Which door would the other guard say leads to freedom?""
+
+3. **Analyze the possible answers**:
+   - If you ask the truthful guard, they will point to the door to certain death because the lying guard would point to the door to freedom.
+   - If you ask the lying guard, they will lie about what the truthful guard would say, and still point to the door to certain death.
+
+4. **Conclusion**:
+   - In both cases, the guard will point to the door to certain death.
+   - Therefore, you should go through the other door.
+
+Since you only need to ask one question to determine the correct door, the minimum number of questions needed is one.
+
+```json
+{ ""answer"": ""C"" }
+```"
 Puzzle,"You have 3 switches in front of you - A, B and C. You have 3 light bulbs in front of you in the same room - one red, one blue, one purple. They are LED and do not get warm when turned on. You want to know which switch turns on which light bulb. What is the best way to determine this?",A process of elimination. Test each switch independently and observe which light bulb turns on for each.,Turing each switch on one at a time and observing the bulbs.,"['Turing two switches on for a while, turn one off, then touching the bulbs too see which is warm and which one is one.', 'You must walk into another room to observe the bulbs.', 'Turing all of the switches on at once and observing the bulbs.', 'Turing each switch on one at a time and observing the bulbs.']","QUESTION
 You have 3 switches in front of you - A, B and C. You have 3 light bulbs in front of you in the same room - one red, one blue, one purple. They are LED and do not get warm when turned on. You want to know which switch turns on which light bulb. What is the best way to determine this?
 
@@ -483,7 +987,37 @@ Option D, turning each switch on one at a time and observing the bulbs, is the m
   ""Udaharana"": ""For example, if you turn on Switch A and the red bulb lights up, you immediately know A controls red. Repeating this for B and C confirms their respective bulbs."",
   ""Upanaya"": ""In this scenario, since the bulbs are in the same room and observable, sequential testing of switches (A, B, C) allows direct correlation between each switch and bulb state."",
   ""Nigamana"": ""Therefore, Option D is the most reliable method to identify the switch-bulb relationships through systematic observation.""
-}",The best way to determine which switch controls which bulb is Option D: Turning each switch on one at a time and observing the bulbs.,"By testing each switch individually, you can directly observe the corresponding bulb's reaction (on/off), establishing a clear one-to-one mapping without ambiguity.","For example, if you turn on Switch A and the red bulb lights up, you immediately know A controls red. Repeating this for B and C confirms their respective bulbs.","In this scenario, since the bulbs are in the same room and observable, sequential testing of switches (A, B, C) allows direct correlation between each switch and bulb state.","Therefore, Option D is the most reliable method to identify the switch-bulb relationships through systematic observation."
+}",The best way to determine which switch controls which bulb is Option D: Turning each switch on one at a time and observing the bulbs.,"By testing each switch individually, you can directly observe the corresponding bulb's reaction (on/off), establishing a clear one-to-one mapping without ambiguity.","For example, if you turn on Switch A and the red bulb lights up, you immediately know A controls red. Repeating this for B and C confirms their respective bulbs.","In this scenario, since the bulbs are in the same room and observable, sequential testing of switches (A, B, C) allows direct correlation between each switch and bulb state.","Therefore, Option D is the most reliable method to identify the switch-bulb relationships through systematic observation.",D,B,"To determine the correct option, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: By testing each switch individually, you can directly observe the corresponding bulb's reaction (on/off), establishing a clear one-to-one mapping without ambiguity.
+2. **Udāharaṇa (Example)**: For example, if you turn on Switch A and the red bulb lights up, you immediately know A controls red. Repeating this for B and C confirms their respective bulbs.
+3. **Upanaya (Application)**: In this scenario, since the bulbs are in the same room and observable, sequential testing of switches (A, B, C) allows direct correlation between each switch and bulb state.
+
+Given the options:
+- **Option A**: Turning two switches on for a while, turn one off, then touching the bulbs to see which is warm and which one is on. This is not applicable since the bulbs do not get warm.
+- **Option B**: You must walk into another room to observe the bulbs. This is not necessary since the bulbs are in the same room.
+- **Option C**: Turning all of the switches on at once and observing the bulbs. This does not allow for a clear one-to-one mapping.
+- **Option D**: Turning each switch on one at a time and observing the bulbs. This allows for a clear one-to-one mapping as described in the Panchavakya structure.
+
+Therefore, the correct option is:
+
+```json
+{ ""answer"": ""D"" }
+```","To determine which switch controls which light bulb, we need to consider the information given: the bulbs are LED and do not get warm when turned on. This means we cannot use the warmth of the bulbs to determine which switch controls which bulb.
+
+Let's analyze the options:
+
+- **Option A**: Turning two switches on for a while, then turning one off, and touching the bulbs to see which is warm and which one is on. This option is invalid because the bulbs do not get warm.
+
+- **Option B**: You must walk into another room to observe the bulbs. This option is valid because it allows you to turn on a switch, wait, and then observe the bulbs from another room to see which one lights up.
+
+- **Option C**: Turning all of the switches on at once and observing the bulbs. This option does not allow you to determine which switch controls which bulb because all bulbs will be on at the same time.
+
+- **Option D**: Turning each switch on one at a time and observing the bulbs. This option is valid but less efficient than Option B because it requires multiple trips to the room with the bulbs.
+
+Given the constraints and the need to determine which switch controls which bulb efficiently, the best way is to turn on a switch, wait, and then observe the bulbs from another room.
+
+{ ""answer"": ""B"" }"
 Puzzle,"The Poisoned Wine - A king has 1000 sweet bottles of wine, and one contains a very bitter poison. The poison takes effect exactly 24 hours after consumption. The king needs to find the poisoned bottle in 24 hours for an event. He has 10 prisoners to test the wine. What is the fastest way for him to identify the poisoned bottle?","Divide the 1000 bottles of wine amongst the 10 prisoners - each receiving 100 bottles. Ask the prisoners to note which bottle tastes very bitter, this is the poisoned one.",Divide the bottles of wine amongst the prisoners and get them to note which one tastes bitter.,"['Using a binary search strategy with the 10 prisoners, leveraging the concept of binary numbers to minimize the number of tests needed. The king will know results in 24 hours', 'Divide the bottles of wine amongst the prisoners and get them to take a sip and note which one dies in 24 hours.', 'Get all of the prisoners to sample each of the bottles of wine and see who dies in 24 hours.', 'Divide the bottles of wine amongst the prisoners and get them to note which one tastes bitter.']","QUESTION
 The Poisoned Wine - A king has 1000 sweet bottles of wine, and one contains a very bitter poison. The poison takes effect exactly 24 hours after consumption. The king needs to find the poisoned bottle in 24 hours for an event. He has 10 prisoners to test the wine. What is the fastest way for him to identify the poisoned bottle?
 
@@ -514,7 +1048,44 @@ Given the analysis, the most efficient and humane way for the king to identify t
   ""Udaharana"": ""For example, with 10 bits (prisoners), 2^10 = 1024 unique combinations exist, sufficient to represent all 1000 bottles. Each bottle is assigned a unique 10-bit number."",
   ""Upanaya"": ""Assign each prisoner to a bit position (1–10). Each prisoner drinks from bottles where their corresponding bit is 1. After 24 hours, the dead prisoners' positions form the binary ID of the poisoned bottle."",
   ""Nigamana"": ""Thus, using binary logic with 10 prisoners guarantees identification of the poisoned bottle in 24 hours, as each bottle’s binary code maps uniquely to the prisoners' survival/death outcomes.""
-}","The fastest way to identify the poisoned bottle is by using a binary search strategy with the 10 prisoners, leveraging binary numbers.","Binary representation allows each prisoner to represent a bit in a 10-digit binary number, uniquely identifying the poisoned bottle through the combination of dead (1) and alive (0) prisoners.","For example, with 10 bits (prisoners), 2^10 = 1024 unique combinations exist, sufficient to represent all 1000 bottles. Each bottle is assigned a unique 10-bit number.","Assign each prisoner to a bit position (1–10). Each prisoner drinks from bottles where their corresponding bit is 1. After 24 hours, the dead prisoners' positions form the binary ID of the poisoned bottle.","Thus, using binary logic with 10 prisoners guarantees identification of the poisoned bottle in 24 hours, as each bottle’s binary code maps uniquely to the prisoners' survival/death outcomes."
+}","The fastest way to identify the poisoned bottle is by using a binary search strategy with the 10 prisoners, leveraging binary numbers.","Binary representation allows each prisoner to represent a bit in a 10-digit binary number, uniquely identifying the poisoned bottle through the combination of dead (1) and alive (0) prisoners.","For example, with 10 bits (prisoners), 2^10 = 1024 unique combinations exist, sufficient to represent all 1000 bottles. Each bottle is assigned a unique 10-bit number.","Assign each prisoner to a bit position (1–10). Each prisoner drinks from bottles where their corresponding bit is 1. After 24 hours, the dead prisoners' positions form the binary ID of the poisoned bottle.","Thus, using binary logic with 10 prisoners guarantees identification of the poisoned bottle in 24 hours, as each bottle’s binary code maps uniquely to the prisoners' survival/death outcomes.",A,A,"To determine the correct option, let's analyze each option using the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Binary representation allows each prisoner to represent a bit in a 10-digit binary number, uniquely identifying the poisoned bottle through the combination of dead (1) and alive (0) prisoners.
+2. **Udāharaṇa (Example)**: For example, with 10 bits (prisoners), 2^10 = 1024 unique combinations exist, sufficient to represent all 1000 bottles. Each bottle is assigned a unique 10-bit number.
+3. **Upanaya (Application)**: Assign each prisoner to a bit position (1–10). Each prisoner drinks from bottles where their corresponding bit is 1. After 24 hours, the dead prisoners' positions form the binary ID of the poisoned bottle.
+
+Now, let's evaluate each option:
+
+- **Option A**: This option correctly leverages the binary search strategy using the prisoners to identify the poisoned bottle. It aligns with the Hetu, Udāharaṇa, and Upanaya.
+- **Option B**: This option involves dividing the bottles among prisoners and waiting for one to die, which does not utilize the binary strategy and is less efficient.
+- **Option C**: This option is impractical as it requires each prisoner to sample every bottle, which is not feasible within the 24-hour timeframe.
+- **Option D**: This option assumes the prisoners can taste the poison, which is not possible since the poison is bitter and not immediately detectable by taste.
+
+Based on the Panchavakya logical structure, the correct option is:
+
+```json
+{ ""answer"": ""A"" }
+```","To solve this problem, we need to determine the most efficient way to identify the poisoned bottle of wine using the 10 prisoners within 24 hours. Let's analyze each option step by step:
+
+**Option A:** Using a binary search strategy with the 10 prisoners, leveraging the concept of binary numbers to minimize the number of tests needed. The king will know results in 24 hours.
+- This option involves a strategic approach where each prisoner tests a specific combination of wines, allowing the king to identify the poisoned bottle using binary numbers. This method is efficient and ensures the poisoned bottle can be identified within 24 hours.
+
+**Option B:** Divide the bottles of wine amongst the prisoners and get them to take a sip and note which one dies in 24 hours.
+- This option is straightforward but not efficient. It requires each prisoner to test a significant number of bottles, and it does not guarantee that the poisoned bottle will be identified within 24 hours.
+
+**Option C:** Get all of the prisoners to sample each of the bottles of wine and see who dies in 24 hours.
+- This option is impractical and inefficient. It would require each prisoner to test all 1000 bottles, which is not feasible within 24 hours.
+
+**Option D:** Divide the bottles of wine amongst the prisoners and get them to note which one tastes bitter.
+- This option is not viable because the poison is described as ""very bitter,"" but it does not necessarily mean it will taste bitter immediately. The poison takes effect exactly 24 hours after consumption, so tasting the wine will not reveal the poisoned bottle.
+
+Given the analysis, the most efficient and effective method is to use a binary search strategy with the 10 prisoners, leveraging the concept of binary numbers to minimize the number of tests needed. This ensures the poisoned bottle can be identified within 24 hours.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""A"" }
+```"
 Linguistic,Write a grammatically correct sentence without reusing any letter more than once.,Dogs bark with me.,'Dogs bark with me.',"['No such sentence is possible.', ""'The five boxers jog quick.'"", ""'The quick brown fox jumps over the lazy dog.'"", ""'Dogs bark with me.'""]","QUESTION
 Write a grammatically correct sentence without reusing any letter more than once.
 
@@ -549,7 +1120,40 @@ Therefore, the correct answer, based on the specific phrasing of the question, i
   ""Udaharana"": ""The pangram 'The quick brown fox jumps over the lazy dog.' uses all 26 letters once, but this example is not provided in the options."",
   ""Upanaya"": ""Options B, C, and D each contain repeated letters (e.g., 'E' in Option B, 'O' in Option C, and 'D' in Option D), confirming that no valid sentence exists in the given choices."",
   ""Nigamana"": ""Therefore, the correct answer is Option A, as no grammatically correct sentence in the options avoids reusing any letter.""
-}",Option A is correct: No such sentence is possible.,"All other options contain repeated letters, making them invalid examples of a sentence without any letter reused.","The pangram 'The quick brown fox jumps over the lazy dog.' uses all 26 letters once, but this example is not provided in the options.","Options B, C, and D each contain repeated letters (e.g., 'E' in Option B, 'O' in Option C, and 'D' in Option D), confirming that no valid sentence exists in the given choices.","Therefore, the correct answer is Option A, as no grammatically correct sentence in the options avoids reusing any letter."
+}",Option A is correct: No such sentence is possible.,"All other options contain repeated letters, making them invalid examples of a sentence without any letter reused.","The pangram 'The quick brown fox jumps over the lazy dog.' uses all 26 letters once, but this example is not provided in the options.","Options B, C, and D each contain repeated letters (e.g., 'E' in Option B, 'O' in Option C, and 'D' in Option D), confirming that no valid sentence exists in the given choices.","Therefore, the correct answer is Option A, as no grammatically correct sentence in the options avoids reusing any letter.",A,A,"To determine the correct answer, let's analyze each option based on the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: All other options contain repeated letters, making them invalid examples of a sentence without any letter reused.
+2. **Udāharaṇa (Example)**: The pangram 'The quick brown fox jumps over the lazy dog.' uses all 26 letters once, but this example is not provided in the options.
+3. **Upanaya (Application)**: Options B, C, and D each contain repeated letters (e.g., 'E' in Option B, 'O' in Option C, and 'D' in Option D), confirming that no valid sentence exists in the given choices.
+
+Let's examine each option:
+
+- **Option A**: ""No such sentence is possible."" This statement is true based on the given options.
+- **Option B**: 'The five boxers jog quick.' Contains repeated letters ('e').
+- **Option C**: 'The quick brown fox jumps over the lazy dog.' Contains repeated letters ('o').
+- **Option D**: 'Dogs bark with me.' Contains repeated letters ('o').
+
+Since Options B, C, and D all contain repeated letters, the correct answer is:
+
+```json
+{ ""answer"": ""A"" }
+```","To determine the correct answer, we need to analyze each option to see if it meets the criteria of not reusing any letter more than once.
+
+**Option A:** ""No such sentence is possible.""
+- This statement itself is a sentence, so it doesn't meet the criteria of being a sentence that doesn't reuse any letter more than once.
+
+**Option B:** 'The five boxers jog quick.'
+- This sentence reuses the letter 'e' multiple times.
+
+**Option C:** 'The quick brown fox jumps over the lazy dog.'
+- This sentence reuses several letters multiple times, such as 'o', 'e', 't', etc.
+
+**Option D:** 'Dogs bark with me.'
+- This sentence reuses the letter 'o' and 's' multiple times.
+
+After analyzing each option, it is clear that none of the options meet the criteria of not reusing any letter more than once.
+
+{ ""answer"": ""A"" }"
 Spatial,"An arrow points up. We rotate it 90 degrees to the left, mirror it along its flat end, and rotate it another 90 degrees to the left. Which direction is it pointing?",Up,Up,"['Down', 'Up', 'Right', 'Left']","QUESTION
 An arrow points up. We rotate it 90 degrees to the left, mirror it along its flat end, and rotate it another 90 degrees to the left. Which direction is it pointing?
 
@@ -578,7 +1182,33 @@ So, after all these operations, the arrow ends up pointing in the same direction
   ""Udaharana"": ""If an arrow points north, rotating left 90° points west, mirroring along the flat end flips it to east, and another left 90° rotation returns it to north."",
   ""Upanaya"": ""In this case, the sequence of transformations (rotate left, mirror, rotate left) follows the same pattern: up → left → right → up."",
   ""Nigamana"": ""Therefore, the final direction of the arrow is Up (Option B).""
-}",The arrow is pointing Up (Option B) after the transformations.,Each rotation and mirroring operation cycles the direction in a predictable sequence that returns to the original direction.,"If an arrow points north, rotating left 90° points west, mirroring along the flat end flips it to east, and another left 90° rotation returns it to north.","In this case, the sequence of transformations (rotate left, mirror, rotate left) follows the same pattern: up → left → right → up.","Therefore, the final direction of the arrow is Up (Option B)."
+}",The arrow is pointing Up (Option B) after the transformations.,Each rotation and mirroring operation cycles the direction in a predictable sequence that returns to the original direction.,"If an arrow points north, rotating left 90° points west, mirroring along the flat end flips it to east, and another left 90° rotation returns it to north.","In this case, the sequence of transformations (rotate left, mirror, rotate left) follows the same pattern: up → left → right → up.","Therefore, the final direction of the arrow is Up (Option B).",B,A,"To determine the final direction of the arrow after the sequence of transformations, we will follow the Panchavakya logical structure step by step.
+
+1. **Hetu (Reason)**: Each rotation and mirroring operation cycles the direction in a predictable sequence that returns to the original direction.
+2. **Udāharaṇa (Example)**: If an arrow points north, rotating left 90° points west, mirroring along the flat end flips it to east, and another left 90° rotation returns it to north.
+3. **Upanaya (Application)**: In this case, the sequence of transformations (rotate left, mirror, rotate left) follows the same pattern: up → left → right → up.
+
+Let's apply this to the given problem:
+
+- **Initial Direction**: Up
+- **First Rotation (90 degrees to the left)**: The arrow points to the left.
+- **Mirroring along the flat end**: The arrow flips to the right.
+- **Second Rotation (90 degrees to the left)**: The arrow points up.
+
+Therefore, after the sequence of transformations, the arrow is pointing up.
+
+```json
+{ ""answer"": ""B"" }
+```","To solve this problem, let's break down the steps:
+
+1. **Initial Position**: The arrow points up.
+2. **First Rotation (90 degrees to the left)**: Rotating the arrow 90 degrees to the left will make it point to the left.
+3. **Mirroring**: Mirroring the arrow along its flat end (which is now to the right) will make it point to the right.
+4. **Second Rotation (90 degrees to the left)**: Rotating the arrow 90 degrees to the left will make it point down.
+
+Therefore, the final direction the arrow is pointing is down.
+
+{ ""answer"": ""A"" }"
 Linguistic,Write a sentence where every word starts with the letter A.,Alice ate an apple after an argument.,Alice ate an apple after an argument.,"['Apples and apricots are always an amazing afternoon snack.', 'The aardvark adored and amazing, appetizing apron.', 'Alice ate an apple after an argument.', 'Alligators always avoid angry ants aggressively attacking two apples.']","QUESTION
 Write a sentence where every word starts with the letter A.
 
@@ -607,7 +1237,59 @@ Based on the analysis, the correct answer is:
   ""Udaharana"": ""For instance, a valid sentence where every word starts with 'A' could be 'All animals are amazing animals,' where each word starts with 'A.'"",
   ""Upanaya"": ""In the given options, Option C meets this criterion as all its words start with 'A,' unlike the other options which contain words starting with other letters."",
   ""Nigamana"": ""Therefore, Option C is the correct answer.""
-}",The correct sentence is Option C: 'Alice ate an apple after an argument.',"Each word in the sentence begins with the letter 'A,' satisfying the requirement.","For instance, a valid sentence where every word starts with 'A' could be 'All animals are amazing animals,' where each word starts with 'A.'","In the given options, Option C meets this criterion as all its words start with 'A,' unlike the other options which contain words starting with other letters.","Therefore, Option C is the correct answer."
+}",The correct sentence is Option C: 'Alice ate an apple after an argument.',"Each word in the sentence begins with the letter 'A,' satisfying the requirement.","For instance, a valid sentence where every word starts with 'A' could be 'All animals are amazing animals,' where each word starts with 'A.'","In the given options, Option C meets this criterion as all its words start with 'A,' unlike the other options which contain words starting with other letters.","Therefore, Option C is the correct answer.",,D,"To determine the correct option, we need to analyze each option based on the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Each word in the sentence must begin with the letter 'A.'
+2. **Udāharaṇa (Example)**: A valid sentence where every word starts with 'A' could be 'All animals are amazing animals.'
+3. **Upanaya (Application)**: We need to check each option to see if all words start with 'A.'
+
+Let's evaluate each option:
+
+- **Option A**: ""Apples and apricots are always an amazing afternoon snack.""
+  - Words: Apples, and, apricots, are, always, an, amazing, afternoon, snack.
+  - Not all words start with 'A.'
+
+- **Option B**: ""The aardvark adored and amazing, appetizing apron.""
+  - Words: The, aardvark, adored, and, amazing, appetizing, apron.
+  - Not all words start with 'A.'
+
+- **Option C**: ""Alice ate an apple after an argument.""
+  - Words: Alice, ate, an, apple, after, an, argument.
+  - Not all words start with 'A.'
+
+- **Option D**: ""Alligators always avoid angry ants aggressively attacking two apples.""
+  - Words: Alligators, always, avoid, angry, ants, aggressively, attacking, two, apples.
+  - Not all words start with 'A.'
+
+None of the options meet the criterion where every word starts with the letter 'A.' Therefore, there is no correct option based on the given criteria.
+
+```json
+{ ""answer"": ""None"" }
+```","To determine the correct answer, we need to identify the sentence where every word starts with the letter ""A.""
+
+Let's analyze each option:
+
+- **Option A:** ""Apples and apricots are always an amazing afternoon snack.""
+  - Words: Apples, and, apricots, are, always, an, amazing, afternoon, snack.
+  - ""and"" does not start with ""A.""
+
+- **Option B:** ""The aardvark adored and amazing, appetizing apron.""
+  - Words: The, aardvark, adored, and, amazing, appetizing, apron.
+  - ""The"" does not start with ""A.""
+
+- **Option C:** ""Alice ate an apple after an argument.""
+  - Words: Alice, ate, an, apple, after, an, argument.
+  - ""an"" does not start with ""A.""
+
+- **Option D:** ""Alligators always avoid angry ants aggressively attacking two apples.""
+  - Words: Alligators, always, avoid, angry, ants, aggressively, attacking, two, apples.
+  - All words start with ""A.""
+
+Based on the analysis, the correct answer is:
+
+```json
+{ ""answer"": ""D"" }
+```"
 Relational,Sally (a girl) has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?,"One, as each brother has 2 sisters and Sally is one of them.",One,"['Two', 'One', 'Three', 'Hard to know']","QUESTION
 Sally (a girl) has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?
 
@@ -633,7 +1315,29 @@ Therefore, Sally has one sister.
   ""Udaharana"": ""In a family with two girls (Sally and her sister) and three boys, each boy has two sisters (the two girls)."",
   ""Upanaya"": ""Since Sally’s brothers each have two sisters and Sally is one of them, the remaining sister must be Sally’s sister."",
   ""Nigamana"": ""Therefore, Sally has one sister.""
-}",Sally has one sister.,"Each of Sally’s three brothers has two sisters, which includes Sally herself and one additional sister.","In a family with two girls (Sally and her sister) and three boys, each boy has two sisters (the two girls).","Since Sally’s brothers each have two sisters and Sally is one of them, the remaining sister must be Sally’s sister.","Therefore, Sally has one sister."
+}",Sally has one sister.,"Each of Sally’s three brothers has two sisters, which includes Sally herself and one additional sister.","In a family with two girls (Sally and her sister) and three boys, each boy has two sisters (the two girls).","Since Sally’s brothers each have two sisters and Sally is one of them, the remaining sister must be Sally’s sister.","Therefore, Sally has one sister.",B,B,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Each of Sally’s three brothers has two sisters, which includes Sally herself and one additional sister.
+2. **Udāharaṇa (Example)**: In a family with two girls (Sally and her sister) and three boys, each boy has two sisters (the two girls).
+3. **Upanaya (Application)**: Since Sally’s brothers each have two sisters and Sally is one of them, the remaining sister must be Sally’s sister.
+
+Given this reasoning, Sally has one additional sister besides herself.
+
+Therefore, the correct answer is:
+```json
+{ ""answer"": ""B"" }
+```","To determine the number of sisters Sally has, let's analyze the information given:
+
+1. Sally has 3 brothers.
+2. Each brother has 2 sisters.
+
+Since Sally is one of the sisters, we need to determine how many other sisters there are.
+
+If each brother has 2 sisters, and Sally is one of them, then there must be one more sister. Therefore, Sally has one additional sister.
+
+So, the correct answer is:
+
+{ ""answer"": ""B"" }"
 Spatial,"I'm in London and facing west, what direction is Edinburgh?","Right, as Edinburgh is north of London.",Right,"['Behind you', 'Left', 'Straight ahead', 'Right']","QUESTION
 I'm in London and facing west, what direction is Edinburgh?
 
@@ -656,7 +1360,32 @@ However, given the options provided and simplifying the geographical relationshi
   ""Udaharana"": ""Imagine standing at the center of a compass facing west; the northeast direction is to your right."",
   ""Upanaya"": ""Since Edinburgh lies northeast relative to London, and the person is facing west, the direction to Edinburgh is to the right."",
   ""Nigamana"": ""Therefore, the correct answer is Right (Option D).""
-}",The correct answer is Option D: Right.,"Edinburgh is located northeast of London, and when facing west, the northeast direction corresponds to the right side.",Imagine standing at the center of a compass facing west; the northeast direction is to your right.,"Since Edinburgh lies northeast relative to London, and the person is facing west, the direction to Edinburgh is to the right.","Therefore, the correct answer is Right (Option D)."
+}",The correct answer is Option D: Right.,"Edinburgh is located northeast of London, and when facing west, the northeast direction corresponds to the right side.",Imagine standing at the center of a compass facing west; the northeast direction is to your right.,"Since Edinburgh lies northeast relative to London, and the person is facing west, the direction to Edinburgh is to the right.","Therefore, the correct answer is Right (Option D).",D,B,"To determine the correct direction of Edinburgh from London when facing west, we need to apply the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Edinburgh is located northeast of London, and when facing west, the northeast direction corresponds to the right side.
+2. **Udāharaṇa (Example)**: Imagine standing at the center of a compass facing west; the northeast direction is to your right.
+3. **Upanaya (Application)**: Since Edinburgh lies northeast relative to London, and the person is facing west, the direction to Edinburgh is to the right.
+
+Given the options:
+- Option A: Behind you
+- Option B: Left
+- Option C: Straight ahead
+- Option D: Right
+
+Based on the logical structure, the correct direction is to the right.
+
+```json
+{ ""answer"": ""D"" }
+```","To determine the direction of Edinburgh from London when facing west, we need to consider the geographical layout of the UK.
+
+1. London is located in the south-east of England.
+2. Edinburgh is located in Scotland, which is north of England.
+
+Given that you are facing west in London, Edinburgh would be to your north. Since you are facing west, north would be to your left.
+
+Therefore, the correct answer is:
+
+{ ""answer"": ""B"" }"
 Counting,Count the number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA'.,Four,Four,"['Five', 'Three', 'Four', 'Two']","QUESTION
 Count the number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA'.
 
@@ -692,7 +1421,38 @@ Therefore, the total count of the letter 'L' in the word 'LOLLAPALOOZA' is 4.
   ""Udaharana"": ""In the word 'BANANA', counting each letter step-by-step shows three 'A's. Similarly, counting letters in 'LOLLAPALOOZA' identifies four 'L's."",
   ""Upanaya"": ""Applying the same step-by-step counting method to 'LOLLAPALOOZA' confirms four 'L's at positions 1, 3, 4, and 8."",
   ""Nigamana"": ""Therefore, the correct answer is Option C: Four.""
-}",The number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA' is four.,Systematic counting of each letter in the word reveals four instances of 'L'.,"In the word 'BANANA', counting each letter step-by-step shows three 'A's. Similarly, counting letters in 'LOLLAPALOOZA' identifies four 'L's.","Applying the same step-by-step counting method to 'LOLLAPALOOZA' confirms four 'L's at positions 1, 3, 4, and 8.","Therefore, the correct answer is Option C: Four."
+}",The number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA' is four.,Systematic counting of each letter in the word reveals four instances of 'L'.,"In the word 'BANANA', counting each letter step-by-step shows three 'A's. Similarly, counting letters in 'LOLLAPALOOZA' identifies four 'L's.","Applying the same step-by-step counting method to 'LOLLAPALOOZA' confirms four 'L's at positions 1, 3, 4, and 8.","Therefore, the correct answer is Option C: Four.",C,C,"To determine the correct answer, we need to count the occurrences of the letter 'L' in the word 'LOLLAPALOOZA' step-by-step.
+
+1. **Hetu (Reason)**: Systematic counting of each letter in the word reveals the number of 'L's.
+2. **Udāharaṇa (Example)**: In the word 'BANANA', counting each letter step-by-step shows three 'A's. Similarly, counting letters in 'LOLLAPALOOZA' identifies the number of 'L's.
+3. **Upanaya (Application)**: Applying the same step-by-step counting method to 'LOLLAPALOOZA' confirms the number of 'L's.
+
+Let's count the 'L's in 'LOLLAPALOOZA':
+- Position 1: L
+- Position 3: L
+- Position 4: L
+- Position 8: L
+
+There are four 'L's in the word 'LOLLAPALOOZA'.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA', we need to count each 'L' in the word.
+
+Let's count step by step:
+
+1. L (1st occurrence)
+2. L (2nd occurrence)
+3. L (3rd occurrence)
+4. L (4th occurrence)
+
+There are four occurrences of the letter 'L' in the word 'LOLLAPALOOZA'.
+
+Therefore, the correct answer is:
+
+{ ""answer"": ""C"" }"
 Puzzle,How many pairs of twins do you need in a room for there to be at least a 50% chance that two people have the same birthday?,"1 pair, as twins share the same birthday.",1 pair,"['46 pairs', '12 pairs', '1 pair', '23 pairs']","QUESTION
 How many pairs of twins do you need in a room for there to be at least a 50% chance that two people have the same birthday?
 
@@ -719,7 +1479,38 @@ Given the options provided and sticking strictly to the logic of needing at leas
   ""Udaharana"": ""If two people are twins, their birthdays are identical by definition (e.g., twins born on March 5th)."",
   ""Upanaya"": ""In the scenario, one pair of twins introduces two people with the same birthday, fulfilling the 50% probability threshold immediately."",
   ""Nigamana"": ""Therefore, only 1 pair of twins is required to ensure a 50% chance of shared birthdays.""
-}",You need 1 pair of twins in the room for there to be at least a 50% chance that two people share the same birthday.,"Each pair of twins inherently shares the same birthday, so even a single pair guarantees two people with matching birthdays.","If two people are twins, their birthdays are identical by definition (e.g., twins born on March 5th).","In the scenario, one pair of twins introduces two people with the same birthday, fulfilling the 50% probability threshold immediately.","Therefore, only 1 pair of twins is required to ensure a 50% chance of shared birthdays."
+}",You need 1 pair of twins in the room for there to be at least a 50% chance that two people share the same birthday.,"Each pair of twins inherently shares the same birthday, so even a single pair guarantees two people with matching birthdays.","If two people are twins, their birthdays are identical by definition (e.g., twins born on March 5th).","In the scenario, one pair of twins introduces two people with the same birthday, fulfilling the 50% probability threshold immediately.","Therefore, only 1 pair of twins is required to ensure a 50% chance of shared birthdays.",C,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: Each pair of twins inherently shares the same birthday, so even a single pair guarantees two people with matching birthdays.
+2. **Udāharaṇa (Example)**: If two people are twins, their birthdays are identical by definition (e.g., twins born on March 5th).
+3. **Upanaya (Application)**: In the scenario, one pair of twins introduces two people with the same birthday, fulfilling the 50% probability threshold immediately.
+
+Given this reasoning, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the number of pairs of twins needed in a room for there to be at least a 50% chance that two people have the same birthday, we need to consider the probability of having at least one shared birthday among the twins.
+
+Let's analyze the options step by step:
+
+1. **Option A: 46 pairs**
+   - This is a large number of pairs. With 46 pairs, that's 92 individuals. The probability of at least one shared birthday is very high due to the large number of people.
+
+2. **Option B: 12 pairs**
+   - With 12 pairs, that's 24 individuals. The probability of at least one shared birthday is still quite high, but not as high as with 46 pairs.
+
+3. **Option C: 1 pair**
+   - With 1 pair, that's 2 individuals. The probability of them having the same birthday is 100% since they are twins.
+
+4. **Option D: 23 pairs**
+   - With 23 pairs, that's 46 individuals. The probability of at least one shared birthday is very high, but not as high as with 46 pairs.
+
+Given that twins share the same birthday by definition, having even just one pair of twins guarantees a 100% chance that two people have the same birthday.
+
+Therefore, the correct answer is:
+```json
+{ ""answer"": ""C"" }
+```"
 Puzzle,A partially full hotel has an infinite number of fully furnished rooms. How does it accommodate one more guest?,"By putting the guest in an empty room, as the hotel is only partially full.",By putting the guest in an empty room.,"['You ask each current guest to move to the next room.', 'You cannot accommodate one more guest.', 'You ask each current guest to move to the room number n*2.', 'By putting the guest in an empty room.']","QUESTION
 A partially full hotel has an infinite number of fully furnished rooms. How does it accommodate one more guest?
 
@@ -748,7 +1539,33 @@ Given the explanations, the most comprehensive and mathematically sound solution
   ""Udaharana"": ""Imagine a hotel with 10 rooms where 5 are occupied and 5 are empty. A new guest can be placed in any of the 5 empty rooms."",
   ""Upanaya"": ""In the infinite hotel scenario, even partial occupancy means infinitely many rooms remain unoccupied, allowing direct assignment of a new guest to an empty room."",
   ""Nigamana"": ""Therefore, the correct method is to assign the guest to an existing empty room (Option D).""
-}",You can accommodate one more guest by putting the guest in an empty room.,"Since the hotel is partially full, there exist empty rooms available for allocation.",Imagine a hotel with 10 rooms where 5 are occupied and 5 are empty. A new guest can be placed in any of the 5 empty rooms.,"In the infinite hotel scenario, even partial occupancy means infinitely many rooms remain unoccupied, allowing direct assignment of a new guest to an empty room.","Therefore, the correct method is to assign the guest to an existing empty room (Option D)."
+}",You can accommodate one more guest by putting the guest in an empty room.,"Since the hotel is partially full, there exist empty rooms available for allocation.",Imagine a hotel with 10 rooms where 5 are occupied and 5 are empty. A new guest can be placed in any of the 5 empty rooms.,"In the infinite hotel scenario, even partial occupancy means infinitely many rooms remain unoccupied, allowing direct assignment of a new guest to an empty room.","Therefore, the correct method is to assign the guest to an existing empty room (Option D).",D,C,"To determine the correct option, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The hotel is partially full, which means there are empty rooms available.
+2. **Udāharaṇa (Example)**: Consider a hotel with 10 rooms where 5 are occupied and 5 are empty. A new guest can be placed in any of the 5 empty rooms.
+3. **Upanaya (Application)**: In the infinite hotel scenario, even with partial occupancy, there are infinitely many rooms remaining unoccupied, allowing direct assignment of a new guest to an empty room.
+
+Given this reasoning, the correct option is:
+
+```json
+{ ""answer"": ""D"" }
+```","To determine the best option for accommodating one more guest in a hotel with an infinite number of fully furnished rooms, let's analyze each option step by step:
+
+1. **Option A: You ask each current guest to move to the next room.**
+   - This option implies that guests would need to move to the next room, which is not feasible in an infinite setting because there is no ""next"" room in an infinite sequence.
+
+2. **Option B: You cannot accommodate one more guest.**
+   - This option is incorrect because the hotel has an infinite number of rooms, so there is always room for one more guest.
+
+3. **Option C: You ask each current guest to move to the room number n*2.**
+   - This option suggests doubling the room numbers of the current guests. This would create an infinite number of empty rooms (e.g., room 1 to room 2, room 2 to room 4, etc.), allowing for the new guest to be accommodated in one of the newly created empty rooms.
+
+4. **Option D: By putting the guest in an empty room.**
+   - This option assumes there is an empty room, which contradicts the premise that the hotel is partially full and has an infinite number of fully furnished rooms.
+
+Given the analysis, the best option is:
+
+{ ""answer"": ""C"" }"
 Puzzle,A runaway trolley is heading down the tracks away from five people upwards of the track. You are near a lever that can switch the trolley to another track? How might pulling the lever impact the five people's lives?,"It doesn't impact anyones lives, as the trolley is heading down the tracks in the opposite direction to the five people up the track.",It doesn't impact their lives.,"[""It doesn't impact their lives."", 'Pulling the lever will take their lives.', 'This is an ethical dilemma.', 'Pulling the lever will save their lives.']","QUESTION
 A runaway trolley is heading down the tracks away from five people upwards of the track. You are near a lever that can switch the trolley to another track? How might pulling the lever impact the five people's lives?
 
@@ -777,7 +1594,41 @@ Given this analysis, the correct answer is that pulling the lever will save the 
   ""Udaharana"": ""If a train is moving away from a crowd and you redirect it onto an empty track, the crowd remains unaffected."",
   ""Upanaya"": ""In this scenario, the trolley's direction is away from the five people, making the lever's action irrelevant to their safety."",
   ""Nigamana"": ""Therefore, pulling the lever has no impact on the five people's lives.""
-}",Pulling the lever doesn't impact the five people's lives.,"The trolley is already moving away from the five people, so switching tracks would not alter their safety.","If a train is moving away from a crowd and you redirect it onto an empty track, the crowd remains unaffected.","In this scenario, the trolley's direction is away from the five people, making the lever's action irrelevant to their safety.","Therefore, pulling the lever has no impact on the five people's lives."
+}",Pulling the lever doesn't impact the five people's lives.,"The trolley is already moving away from the five people, so switching tracks would not alter their safety.","If a train is moving away from a crowd and you redirect it onto an empty track, the crowd remains unaffected.","In this scenario, the trolley's direction is away from the five people, making the lever's action irrelevant to their safety.","Therefore, pulling the lever has no impact on the five people's lives.",A,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The trolley is already moving away from the five people, so switching tracks would not alter their safety.
+2. **Udāharaṇa (Example)**: If a train is moving away from a crowd and you redirect it onto an empty track, the crowd remains unaffected.
+3. **Upanaya (Application)**: In this scenario, the trolley's direction is away from the five people, making the lever's action irrelevant to their safety.
+
+Given this reasoning, the correct option is:
+
+```json
+{ ""answer"": ""A"" }
+```","To determine the correct answer, let's analyze the scenario step by step:
+
+1. **Scenario Analysis**:
+   - A runaway trolley is heading down the tracks away from five people.
+   - You are near a lever that can switch the trolley to another track.
+
+2. **Impact of Pulling the Lever**:
+   - If you pull the lever, the trolley will be redirected to another track.
+   - The scenario does not specify what is on the other track, but it implies that pulling the lever could potentially save the five people by diverting the trolley away from them.
+
+3. **Option Analysis**:
+   - **Option A**: It doesn't impact their lives.
+     - This is incorrect because pulling the lever could potentially save or endanger the lives of the five people.
+   - **Option B**: Pulling the lever will take their lives.
+     - This is incorrect because the scenario does not provide information about what is on the other track, so we cannot definitively say that pulling the lever will take their lives.
+   - **Option C**: This is an ethical dilemma.
+     - This is correct because the scenario presents a classic ethical dilemma known as the ""trolley problem,"" where one must choose between two morally challenging options.
+   - **Option D**: Pulling the lever will save their lives.
+     - This is incorrect because the scenario does not provide enough information to guarantee that pulling the lever will save their lives.
+
+Based on the analysis, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```"
 Puzzle,"How do you efficiently measure exactly 4 gallons of water with only a 3-gallon, 5-gallon, 4-gallon, and 2-gallon jug?",Fill up the 4-gallon jug,Another option not stated.,"['Filling the 5-gallon jug and pouring it into the 4-gallon jug.', 'Filling the 2-gallon jug, twice.', 'Filling the 5-gallon jug and pouring it into the 3-gallon jug, twice.', 'Another option not stated.']","QUESTION
 How do you efficiently measure exactly 4 gallons of water with only a 3-gallon, 5-gallon, 4-gallon, and 2-gallon jug?
 
@@ -806,7 +1657,42 @@ Therefore, the most efficient method to measure exactly 4 gallons of water is by
   ""Udaharana"": ""For example, first fill the 5-gallon jug and pour into the 3-gallon jug, leaving 2 gallons in the 5-gallon jug. Empty the 3-gallon jug, then pour the 2 gallons from the 5-gallon into the 3-gallon. Fill the 5-gallon again and pour into the 3-gallon until full, leaving exactly 4 gallons in the 5-gallon jug."",
   ""Upanaya"": ""In this problem, the steps of filling the 5-gallon jug and transferring to the 3-gallon jug twice replicate the example, allowing the 5-gallon jug to hold exactly 4 gallons after the second transfer."",
   ""Nigamana"": ""Therefore, Option C is the valid solution to measure exactly 4 gallons.""
-}",Option C is the correct method to measure exactly 4 gallons.,"By filling the 5-gallon jug and pouring into the 3-gallon jug twice, you can isolate 2 gallons in the 5-gallon jug, then use the second fill to measure the remaining 2 gallons needed for 4.","For example, first fill the 5-gallon jug and pour into the 3-gallon jug, leaving 2 gallons in the 5-gallon jug. Empty the 3-gallon jug, then pour the 2 gallons from the 5-gallon into the 3-gallon. Fill the 5-gallon again and pour into the 3-gallon until full, leaving exactly 4 gallons in the 5-gallon jug.","In this problem, the steps of filling the 5-gallon jug and transferring to the 3-gallon jug twice replicate the example, allowing the 5-gallon jug to hold exactly 4 gallons after the second transfer.","Therefore, Option C is the valid solution to measure exactly 4 gallons."
+}",Option C is the correct method to measure exactly 4 gallons.,"By filling the 5-gallon jug and pouring into the 3-gallon jug twice, you can isolate 2 gallons in the 5-gallon jug, then use the second fill to measure the remaining 2 gallons needed for 4.","For example, first fill the 5-gallon jug and pour into the 3-gallon jug, leaving 2 gallons in the 5-gallon jug. Empty the 3-gallon jug, then pour the 2 gallons from the 5-gallon into the 3-gallon. Fill the 5-gallon again and pour into the 3-gallon until full, leaving exactly 4 gallons in the 5-gallon jug.","In this problem, the steps of filling the 5-gallon jug and transferring to the 3-gallon jug twice replicate the example, allowing the 5-gallon jug to hold exactly 4 gallons after the second transfer.","Therefore, Option C is the valid solution to measure exactly 4 gallons.",C,B,"To determine the correct option for measuring exactly 4 gallons of water using the given jugs, we need to follow the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: By filling the 5-gallon jug and pouring into the 3-gallon jug twice, you can isolate 2 gallons in the 5-gallon jug, then use the second fill to measure the remaining 2 gallons needed for 4.
+2. **Udāharaṇa (Example)**: For example, first fill the 5-gallon jug and pour into the 3-gallon jug, leaving 2 gallons in the 5-gallon jug. Empty the 3-gallon jug, then pour the 2 gallons from the 5-gallon into the 3-gallon. Fill the 5-gallon again and pour into the 3-gallon until full, leaving exactly 4 gallons in the 5-gallon jug.
+3. **Upanaya (Application)**: In this problem, the steps of filling the 5-gallon jug and transferring to the 3-gallon jug twice replicate the example, allowing the 5-gallon jug to hold exactly 4 gallons after the second transfer.
+
+Let's reason through the options:
+
+- **Option A**: Filling the 5-gallon jug and pouring it into the 4-gallon jug. This does not allow us to measure exactly 4 gallons.
+- **Option B**: Filling the 2-gallon jug, twice. This only gives us 4 gallons in total but not in a single jug.
+- **Option C**: Filling the 5-gallon jug and pouring it into the 3-gallon jug, twice. This follows the example given in the Panchavakya structure, allowing us to measure exactly 4 gallons in the 5-gallon jug.
+- **Option D**: Another option not stated. This is not relevant as we have a clear method in Option C.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To solve this problem, we need to determine how to measure exactly 4 gallons of water using the given jugs: a 3-gallon jug, a 5-gallon jug, a 4-gallon jug, and a 2-gallon jug.
+
+Let's analyze each option step by step:
+
+**Option A:** Filling the 5-gallon jug and pouring it into the 4-gallon jug.
+- This will leave 1 gallon in the 5-gallon jug, which is not 4 gallons.
+
+**Option B:** Filling the 2-gallon jug, twice.
+- This will give us 4 gallons (2 gallons + 2 gallons), but we need to use the 4-gallon jug to measure exactly 4 gallons.
+
+**Option C:** Filling the 5-gallon jug and pouring it into the 3-gallon jug, twice.
+- This is not possible because the 3-gallon jug can only hold 3 gallons at a time.
+
+**Option D:** Another option not stated.
+- This option is not specified, so we cannot evaluate it.
+
+Given the options, the only feasible way to measure exactly 4 gallons is by using the 4-gallon jug directly. Since this option is not listed, the closest correct approach is to use the 2-gallon jug twice, which is Option B.
+
+{ ""answer"": ""B"" }"
 Popular science,"A 2kg tree grows in a planted pot with 10kg of soil. When the tree grows to 3kg, how much soil is left?","There is still 10kg of soil. Trees are primarily composed of carbon dioxide and water, not soil.",10kg,"['11kg', '9kg', '10kg', '8kg']","QUESTION
 A 2kg tree grows in a planted pot with 10kg of soil. When the tree grows to 3kg, how much soil is left?
 
@@ -832,7 +1718,32 @@ Therefore, after the tree grows to 3kg, there is 9kg of soil left.
   ""Udaharana"": ""When you fill a sponge with water, its weight increases, but the weight of the bowl holding it doesn’t change."",
   ""Upanaya"": ""Likewise, as the 2 kg tree grows to 3 kg, it draws water and dissolved nutrients from the soil, but it does not convert soil mass into wood—so the soil’s mass stays at 10 kg."",
   ""Nigamana"": ""Therefore, after the tree grows to 3 kg, there are still 10 kg of soil left in the pot.""
-}",The amount of soil left in the pot is 10 kg.,"The tree’s increase in mass comes from water and nutrients, not from the soil’s bulk mass itself.","When you fill a sponge with water, its weight increases, but the weight of the bowl holding it doesn’t change.","Likewise, as the 2 kg tree grows to 3 kg, it draws water and dissolved nutrients from the soil, but it does not convert soil mass into wood—so the soil’s mass stays at 10 kg.","Therefore, after the tree grows to 3 kg, there are still 10 kg of soil left in the pot."
+}",The amount of soil left in the pot is 10 kg.,"The tree’s increase in mass comes from water and nutrients, not from the soil’s bulk mass itself.","When you fill a sponge with water, its weight increases, but the weight of the bowl holding it doesn’t change.","Likewise, as the 2 kg tree grows to 3 kg, it draws water and dissolved nutrients from the soil, but it does not convert soil mass into wood—so the soil’s mass stays at 10 kg.","Therefore, after the tree grows to 3 kg, there are still 10 kg of soil left in the pot.",C,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The tree’s increase in mass comes from water and nutrients, not from the soil’s bulk mass itself.
+2. **Udāharaṇa (Example)**: When you fill a sponge with water, its weight increases, but the weight of the bowl holding it doesn’t change.
+3. **Upanaya (Application)**: Likewise, as the 2 kg tree grows to 3 kg, it draws water and dissolved nutrients from the soil, but it does not convert soil mass into wood—so the soil’s mass stays at 10 kg.
+
+Given this reasoning, the mass of the soil remains unchanged because the tree's growth does not consume the soil itself but rather the nutrients and water within it.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""C"" }
+```","To determine the amount of soil left when the tree grows from 2kg to 3kg, we need to consider the following:
+
+1. The initial weight of the tree is 2kg.
+2. The initial weight of the soil is 10kg.
+3. The tree grows to 3kg.
+
+The growth of the tree from 2kg to 3kg means the tree has increased in weight by 1kg. However, this increase in weight does not affect the amount of soil in the pot. The soil remains unchanged because the growth of the tree does not involve the soil.
+
+Therefore, the amount of soil left in the pot is still 10kg.
+
+So, the correct answer is:
+```json
+{ ""answer"": ""C"" }
+```"
 Relational,A man steps over a 0.5m hurdle. What is the minimum height he could have jumped?,"0m, he didn't jump at all, he stepped over the hurdle.",0m,"['0m', 'Between 0.1m and 0.5m', 'Slightly higher than 0.5m', '0.5m']","QUESTION
 A man steps over a 0.5m hurdle. What is the minimum height he could have jumped?
 
@@ -857,7 +1768,29 @@ Thus, the best answer is ""Between 0.1m and 0.5m,"" as it captures the range of 
   ""Udaharana"": ""Stepping over a door frame requires a jump height equal to the frame's height, not higher."",
   ""Upanaya"": ""In this case, the hurdle is 0.5m tall, so the minimum jump height required to clear it is exactly 0.5m."",
   ""Nigamana"": ""Therefore, the correct answer is Option D: 0.5m.""
-}",The minimum height he could have jumped is 0.5m (Option D).,"To step over the hurdle, he must at least reach the height of the hurdle itself, as any lower would fail to clear it.","Stepping over a door frame requires a jump height equal to the frame's height, not higher.","In this case, the hurdle is 0.5m tall, so the minimum jump height required to clear it is exactly 0.5m.","Therefore, the correct answer is Option D: 0.5m."
+}",The minimum height he could have jumped is 0.5m (Option D).,"To step over the hurdle, he must at least reach the height of the hurdle itself, as any lower would fail to clear it.","Stepping over a door frame requires a jump height equal to the frame's height, not higher.","In this case, the hurdle is 0.5m tall, so the minimum jump height required to clear it is exactly 0.5m.","Therefore, the correct answer is Option D: 0.5m.",D,C,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: To step over the hurdle, he must at least reach the height of the hurdle itself, as any lower would fail to clear it.
+2. **Udāharaṇa (Example)**: Stepping over a door frame requires a jump height equal to the frame's height, not higher.
+3. **Upanaya (Application)**: In this case, the hurdle is 0.5m tall, so the minimum jump height required to clear it is exactly 0.5m.
+
+Given this reasoning, the minimum height he could have jumped to clear a 0.5m hurdle is exactly 0.5m.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""D"" }
+```","To determine the minimum height the man could have jumped to step over a 0.5m hurdle, we need to consider the following:
+
+1. The man must clear the hurdle completely.
+2. The hurdle is 0.5m high.
+3. To clear the hurdle, the man must jump to a height slightly higher than 0.5m.
+
+Given these points, the minimum height he could have jumped must be slightly higher than 0.5m to ensure he clears the hurdle.
+
+Therefore, the correct answer is:
+
+{ ""answer"": ""C"" }"
 Popular science,"I walk to my friend's house, averaging 3mph. How fast would I have to run back to double my average speed for the entire trip?","Instantaneously fast, it is mathematically impossible.",Infinitely fast,"['9mph', 'Infinitely fast', '12mph', '6mph']","QUESTION
 I walk to my friend's house, averaging 3mph. How fast would I have to run back to double my average speed for the entire trip?
 
@@ -907,4 +1840,44 @@ Therefore, the correct answer is:
   ""Udaharana"": ""If you travel 1 mile at 1 mph, taking 1 hour, to double the average speed to 2 mph for the round trip, you would need to return in 0 time, which requires infinite speed."",
   ""Upanaya"": ""In this case, walking 1 mile at 3 mph takes 1/3 hour. To double the average speed to 6 mph for the round trip, the return trip would need to take 0 time, implying infinite speed."",
   ""Nigamana"": ""Therefore, to achieve a doubled average speed of 6 mph for the entire trip, you must run back infinitely fast.""
-}",You would have to run back infinitely fast to double your average speed for the entire trip.,"The average speed for the entire trip depends on total distance divided by total time, and doubling the average speed requires infinite speed on the return trip to satisfy the equation.","If you travel 1 mile at 1 mph, taking 1 hour, to double the average speed to 2 mph for the round trip, you would need to return in 0 time, which requires infinite speed.","In this case, walking 1 mile at 3 mph takes 1/3 hour. To double the average speed to 6 mph for the round trip, the return trip would need to take 0 time, implying infinite speed.","Therefore, to achieve a doubled average speed of 6 mph for the entire trip, you must run back infinitely fast."
+}",You would have to run back infinitely fast to double your average speed for the entire trip.,"The average speed for the entire trip depends on total distance divided by total time, and doubling the average speed requires infinite speed on the return trip to satisfy the equation.","If you travel 1 mile at 1 mph, taking 1 hour, to double the average speed to 2 mph for the round trip, you would need to return in 0 time, which requires infinite speed.","In this case, walking 1 mile at 3 mph takes 1/3 hour. To double the average speed to 6 mph for the round trip, the return trip would need to take 0 time, implying infinite speed.","Therefore, to achieve a doubled average speed of 6 mph for the entire trip, you must run back infinitely fast.",B,B,"To determine the correct answer, let's reason through the Panchavakya logical structure:
+
+1. **Hetu (Reason)**: The average speed for the entire trip depends on total distance divided by total time. Doubling the average speed requires infinite speed on the return trip to satisfy the equation.
+
+2. **Udāharaṇa (Example)**: If you travel 1 mile at 1 mph, taking 1 hour, to double the average speed to 2 mph for the round trip, you would need to return in 0 time, which requires infinite speed.
+
+3. **Upanaya (Application)**: In this case, walking 1 mile at 3 mph takes 1/3 hour. To double the average speed to 6 mph for the round trip, the return trip would need to take 0 time, implying infinite speed.
+
+Given this reasoning, the correct answer is:
+
+```json
+{ ""answer"": ""B"" }
+```","To solve this problem, we need to determine the speed at which you would need to run back to double your average speed for the entire trip.
+
+Let's break it down step by step:
+
+1. **Define the variables:**
+   - Let the distance to your friend's house be \( D \) miles.
+   - The speed walking to your friend's house is 3 mph.
+   - The time taken to walk to your friend's house is \( T_1 = \frac{D}{3} \) hours.
+
+2. **Determine the total distance for the round trip:**
+   - The total distance for the round trip is \( 2D \) miles.
+
+3. **Determine the average speed for the entire trip:**
+   - To double the average speed for the entire trip, the average speed should be \( 2 \times 3 \) mph = 6 mph.
+
+4. **Calculate the total time for the round trip:**
+   - The total time for the round trip at an average speed of 6 mph is \( \frac{2D}{6} = \frac{D}{3} \) hours.
+
+5. **Determine the time taken to run back:**
+   - Since the total time for the round trip is \( \frac{D}{3} \) hours and the time taken to walk to your friend's house is \( \frac{D}{3} \) hours, the time taken to run back must be 0 hours.
+
+6. **Determine the speed required to run back:**
+   - If the time taken to run back is 0 hours, the speed required to run back would be infinitely fast.
+
+Therefore, the correct answer is:
+
+```json
+{ ""answer"": ""B"" }
+```"

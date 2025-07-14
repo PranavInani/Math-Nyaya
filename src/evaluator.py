@@ -27,7 +27,7 @@ def make_evaluation_prompt(df, index, add_panchvakya=True, prompt_style='cot'):
     
     # But restore the actual format placeholders
     for placeholder in ["question_text", "optionA", "optionB", "optionC", "optionD", 
-                        "pratijna", "hetu", "udaharana", "upanaya", "nigamana"]:
+                        "hetu", "udaharana", "upanaya"]:
         prompt_template = prompt_template.replace(f"{{{{{placeholder}}}}}", f"{{{placeholder}}}")
 
     options_dict = {f"option{chr(ord('A') + i)}": option for i, option in enumerate(options_list)}
@@ -36,11 +36,9 @@ def make_evaluation_prompt(df, index, add_panchvakya=True, prompt_style='cot'):
         prompt = prompt_template.format(
             question_text=question,
             **options_dict,
-            pratijna=df.loc[index, 'Pratijna'],
             hetu=df.loc[index, 'Hetu'],
             udaharana=df.loc[index, 'Udaharana'],
-            upanaya=df.loc[index, 'Upanaya'],
-            nigamana=df.loc[index, 'Nigamana']
+            upanaya=df.loc[index, 'Upanaya']
         )
     else:
         prompt = prompt_template.format(
