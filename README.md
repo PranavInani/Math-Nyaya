@@ -65,13 +65,42 @@ This project evaluates whether providing a structured logical argument, based on
    ```bash
    python compare_all_models.py
    ```
-   This will generate a comprehensive comparison chart saved as `model_comparision.png`.
+   This will generate:
+   - A comprehensive comparison chart saved as `model_comparision.png`
+   - Detailed question-by-question results tables for COT and Zero-Shot strategies
+   - CSV files with detailed performance data
 
 ## Results
 
 ![Model Comparison](data/processed/final_results/model_comparision.png)
 
 The comprehensive comparison chart shows the performance of all evaluated models using both Chain-of-Thought (COT) and Zero-Shot prompting, with and without Panchavakya logical reasoning framework.
+
+### Question-by-Question Analysis
+
+The project also generates detailed question-by-question results tables that show exactly which questions each model got correct or incorrect:
+
+- **Chain-of-Thought (COT) Results Table**: `question_results_cot_table.png`
+  - Shows performance for each model using COT prompting
+  - Displays results both with and without Panchavakya framework
+  - ✓ indicates correct answers, ✗ indicates incorrect answers
+
+- **Zero-Shot Results Table**: `question_results_zeroshot_table.png`
+  - Shows performance for each model using Zero-Shot prompting
+  - Displays results both with and without Panchavakya framework
+  - Color-coded cells: Green for correct, Red for incorrect
+
+These tables provide a granular view of model performance, making it easy to identify:
+- Which questions are most challenging across all models
+- How the Panchavakya framework affects specific question performance
+- Model-specific strengths and weaknesses on individual questions
+
+### Data Files
+
+The analysis generates several CSV files for further investigation:
+- `detailed_question_results.csv`: Raw question-by-question performance data
+- `question_results_table.csv`: Pivot table format for easy analysis
+- Individual model result files with `_cot.csv` and `_zero_shot.csv` suffixes
 
 ## Models
 
