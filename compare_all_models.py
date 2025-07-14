@@ -386,6 +386,8 @@ def create_strategy_table(detailed_df, strategy_prefix, title):
     
     # Shorten the DeepSeek model name for better display
     strategy_df['model_display'] = strategy_df['model_short'].str.replace('deepseek-r1-distill-llama-70b', 'deepseek-distil')
+    strategy_df['model_display'] = strategy_df['model_display'].str.replace('llama-3.1-8b-instant', 'llama-3.1-8b')
+    strategy_df['model_display'] = strategy_df['model_display'].str.replace('llama-3.3-70b-versatile', 'llama-3.3-70b')
     strategy_df['model_strategy_full'] = strategy_df['model_display'] + '\n' + strategy_df['strategy_clean']
     
     # Create pivot table with full names
@@ -456,7 +458,7 @@ def create_strategy_table(detailed_df, strategy_prefix, title):
     for j in range(len(table_data[0])):
         cell = table[(0, j)]
         cell.set_facecolor('#2196F3')  # Blue header
-        cell.set_text_props(weight='bold', color='white', size=7)  # Smaller font for headers
+        cell.set_text_props(weight='bold', color='white', size=9)  # Increased font for headers
         cell.set_edgecolor('white')
         cell.set_linewidth(1)
         # Set more proportional cell height for headers
@@ -466,7 +468,7 @@ def create_strategy_table(detailed_df, strategy_prefix, title):
     for i in range(1, len(table_data)):
         cell = table[(i, 0)]
         cell.set_facecolor('#E0E0E0')  # Light gray for question numbers
-        cell.set_text_props(weight='bold', color='black', size=8)
+        cell.set_text_props(weight='bold', color='black', size=10)  # Increased font for question numbers
         cell.set_edgecolor('white')
         cell.set_linewidth(1)
     
